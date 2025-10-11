@@ -1,0 +1,25 @@
+<mxfile host="Electron" modified="2025-10-05T17:44:23.203Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.2.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="0ECPMpmGczvsS1Ag6OU4" version="24.2.5" type="device">
+  <diagram name="Página-1" id="DItFxWxn9VxDEEo3C6vN">
+    <mxGraphModel dx="1395" dy="703" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UrbdsJfFAwuZ61YIbgFE-2" value="Usuário" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="370" y="80" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UrbdsJfFAwuZ61YIbgFE-3" value="Comprador" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="270" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UrbdsJfFAwuZ61YIbgFE-5" value="Loja" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="250" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="UrbdsJfFAwuZ61YIbgFE-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrbdsJfFAwuZ61YIbgFE-2" target="UrbdsJfFAwuZ61YIbgFE-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UrbdsJfFAwuZ61YIbgFE-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="UrbdsJfFAwuZ61YIbgFE-2" target="UrbdsJfFAwuZ61YIbgFE-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

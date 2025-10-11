@@ -1,0 +1,495 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    background-image: url('../img/balckTech.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;              
+  height: 8px;             
+}
+
+::-webkit-scrollbar-track {
+  background: #111;         
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;         
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+.blurContent {
+    background-color: #070707bd;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.layout {
+    display: flex;
+
+}
+
+@media (min-width: 600px) {
+    .layout {
+        flex-direction: column !important;
+
+    }
+}
+
+@media (min-width: 1024px) {
+    .layout {
+        flex-direction: row !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .configAction {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 95%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .configAction {
+        display: flex;
+        flex-direction: column;
+        width: 20%;
+    }
+}
+
+.h-0 {
+    height: 0%;
+}
+
+.h-10 {
+    height: 10%;
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.w-20 {
+    width: 20%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+.w-90 {
+    width: 90%;
+}
+
+.w-60 {
+    width: 60%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.h-40 {
+    height: 40%;
+}
+
+.h-30 {
+    height: 30%;
+}
+
+.h-60 {
+    height: 60%;
+}
+
+.h-90 {
+    height: 90%;
+}
+
+.h-auto {
+    height: auto;
+}
+
+.w-auto {
+    width: auto;
+}
+
+.bg-content {
+   backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.377);
+}
+
+
+.bg-DarkGray {
+    background: linear-gradient(to bottom, #000000ff, #383838ff);
+}
+
+.bg-blueIndigo {
+    background: linear-gradient(to left, rgb(37, 22, 102), rgb(3, 1, 39));
+    border: 1px solid indigo;
+}
+
+.text-silver {
+    background: linear-gradient(90deg, rgb(41, 41, 41), rgb(189, 187, 187));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    filter: brightness(2);
+}
+
+.content-start {
+    justify-content: start;
+    align-items: center;
+}
+
+.content-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.content-end {
+    justify-content: end;
+    align-items: center;
+}
+
+.margin-x {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+/* Login */
+
+#divLogin {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 100vh;
+}
+
+.dataLogin {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.377);
+    position: relative;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 1s ease-in-out, opacity 0.5s ease-in-out;
+
+}
+
+.hidden-login {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.show-login {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Inicio */
+.blurNav {
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    background-color: rgba(0, 0, 0, 0.63);
+}
+
+#searchBar::placeholder {
+    color: white;
+}
+
+.sidebar-desktop {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    width: 15%;
+    height: 100%;
+}
+
+.sidebar-mobile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80px;
+    padding: 2%;
+    border: 1px solid gray;
+}
+
+.desktopIcon {
+    width: 100%;
+    height: 90%;
+    padding: 4%;
+    border-bottom: 1px solid gray;
+}
+
+.mobileIcon {
+    width: 25%;
+    padding-top: 1%;
+    border-bottom: 1px solid gray;
+}
+
+#categoryScreen img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+
+}
+
+.glow-run {
+    position: relative;
+    display: inline-block;
+}
+
+.glow-run::before {
+    content: "";
+    position: absolute;
+    top: -20;
+    left: -20;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    border-radius: inherit;
+    pointer-events: none;
+
+    border: 5px solid rgba(255, 255, 255, 0.425);
+    background:
+        linear-gradient(90deg, rgb(190, 190, 190) 50%, white 50%) top left / 200% 2px no-repeat,
+        linear-gradient(180deg, rgba(190, 190, 190, 0.8) 50%, white 50%) top right / 2px 200% no-repeat,
+        linear-gradient(270deg, rgba(190, 190, 190, 0.8) 50%, white 50%) bottom right / 200% 2px no-repeat,
+        linear-gradient(0deg, rgba(190, 190, 190, 0.8) 50%, white 50%) bottom left / 2px 200% no-repeat;
+
+    filter: blur(6px);
+    /* 🔥 dá o efeito glow */
+    opacity: 0;
+}
+
+.glow-run:hover::before {
+    opacity: 1;
+    animation: border-run 2s linear forwards;
+}
+
+@keyframes border-run {
+    0% {
+        background-position: left top, right top, right bottom, left bottom;
+    }
+
+    25% {
+        background-position: right top, right top, right bottom, left bottom;
+    }
+
+    50% {
+        background-position: right top, right bottom, right bottom, left bottom;
+    }
+
+    75% {
+        background-position: right top, right bottom, left bottom, left bottom;
+    }
+
+    100% {
+        background-position: right top, right bottom, left bottom, left top;
+    }
+}
+
+.mobile-display {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.desktop-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+}
+
+.slideImg {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: scroll 10s linear infinite;
+}
+
+.logoImg {
+    width: 50%;
+    object-fit: contain;
+    border-radius: 50%;
+    height: 50%;
+    margin: 10px;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.card-produto {
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #252525;
+    border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .card-produto {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-produto {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+.card-img {
+    width: 90%;
+    margin: auto;
+    object-fit: cover;
+}
+
+.no-shrink {
+    flex-shrink: 0;
+}
+
+.glow-hover {
+    position: relative;
+    z-index: 0;
+}
+
+.glow-hover::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    border: 6px solid white;
+    border-radius: inherit;
+    filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: -1;
+}
+
+.glow-hover:hover::before {
+    opacity: 1;
+}
+
+#logoLoop img {
+    border-radius: 50%;
+    height: 70%;
+    border: 2px solid rgb(48, 48, 48);
+    object-fit: contain;
+    margin: auto;
+}
+
+#logoLoop {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 150px;
+    mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+#logoLoop::before,
+#logoLoop::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#logoLoop::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+#logoLoop::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+#divPerfil {
+    background-image: url('../img/wallpaper-dark.jpg');
+    background-position: start;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+.fs-xxl {
+    font-size: 6rem;
+}
+
+.menu-btn {
+    display: flex;
+    gap: 5%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    width: 95%;
+    background-color: transparent;
+
+}
+
+.menu-btn p {
+    margin: 0;
+    display: inline;
+}
+
+.menu-btn i {
+    color: white;
+
+}
+
+.menu-btn:hover {
+    background: linear-gradient(to bottom, #000000ff, #383838ff);
+    transition: background-color 0.3s ease;
+}
+
+.object-contain {
+    object-fit: contain;
+}
+
+.object-cover {
+    object-fit: cover;
+}
