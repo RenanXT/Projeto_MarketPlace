@@ -1,5 +1,6 @@
 <?php include_once __DIR__ . '/../layouts/html_header.php'; ?>
 <?php include_once __DIR__ . '/../layouts/BarraNav.php'; ?>
+
 <div id="Content" class="d-flex flex-column w-100 p-1 overflow-auto">
 
     <div class="d-flex gap-2 w-100 h-100 overflow-hidden">
@@ -52,23 +53,16 @@
                     }
                     ?>
                     <?php
-                    for ($i = 0; $i < 15; $i++) {
-                        echo '<div class="card-produto bg-content glow-hover text-white p-2">
-            <img class="card-img" src="../public/img/solar.png" alt="">
-            <button class="btn text-white h-50">
-            <span class="text-center w-100 h-50"><p>' . limitarPalavras('Guitarra Solar ab6c.4 Preto fosco', 4) . '</p>
-            <p>R$ 2599,99</p></span>
-            </button>
-        </div>
-        <div class="card-produto bg-content glow-hover text-white p-2">
-            <img class="card-img" src="../public/img/wallpaper-dark.jpg" alt="">
-            <button class="btn text-white h-50">
-            <span class="text-center w-100 h-50"><p>' . limitarPalavras('Guitarra Solar ab6c.4 Preto fosco', 4) . '</p>
-            <p>R$ 2599,99</p></span>
+                    include_once __DIR__ . '/../../model/produtos.php';
+                    foreach ($produtos as $lista) {
+                        echo '<div class="card-produto bg-content glow-hover text-white p-1">
+            <img class="card-img" src="' . $lista['caminho_arquivo'] . '" alt="">
+            <button class="btn text-white h-40">
+            <span class="text-center w-100 h-50"><p>' . limitarPalavras($lista['nome'], 3) . '</p>
+            <p>R$ ' . $lista['preco'] . '</p></span>
             </button>
         </div>';
-                    }
-                    ?>
+                    } ?>
                 </form>
 
                 <div id="detalhesId" class="d-flex flex-row h-100 w-100 position-relative">
@@ -112,12 +106,11 @@
                                     Solar
                                     A2.6FR lemon neon fosco</h4>
                                 <h3 class="text-white fw-bold p-3">R$ 8.490</h3>
+                                <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Comprar Agora</button>
+                                <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Adicionar ao Carrinho</button>
                                 <div
-                                    class="d-flex flex-column gap-2 p-2 w-100 h-100 bg-content border border-dark rounded-3">
-                                    <h4 class="text-white fw-bold">OPINIÕES</h4>
-                                    <p class="text-white">Deixe Um Comentario</p>
-                                    <input class="bg-transparent border border-dark rounded-2 p-2 w-90 text-white mb-5"
-                                        type="text" name="" id="">
+                                    class="d-flex flex-column gap-2 p-3 mt-3 w-100 h-100 bg-content border border-dark rounded-3">
+                                    <p class="text-white fw-bold fs-4">OPINIÕES DE OUTROS USUARIOS</p>
                                     <div class="d-flex flex-column overflow-auto">
                                         <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
                                             Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
@@ -153,7 +146,7 @@
                                 </div>
                             </div>
                 </div>
-                <script src="../public/js/detalhes.js"></script>
+                <script src="../public/js/produtos-detalhes.js"></script>
             </div>
         </div>
     </div>

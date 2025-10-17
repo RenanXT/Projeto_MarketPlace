@@ -309,6 +309,30 @@ body {
         background-position: right top, right bottom, left bottom, left top;
     }
 }
+.glow-border{
+   position: relative;
+    display: inline-block;
+}
+.glow-border::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+
+    border: 5px solid rgba(255, 255, 255, 0.425);
+    background:
+        linear-gradient(90deg, rgb(190, 190, 190) 50%, white 50%) top left / 200% 2px no-repeat,
+        linear-gradient(180deg, rgba(190, 190, 190, 0.8) 50%, white 50%) top right / 2px 200% no-repeat,
+        linear-gradient(270deg, rgba(190, 190, 190, 0.8) 50%, white 50%) bottom right / 200% 2px no-repeat,
+        linear-gradient(0deg, rgba(190, 190, 190, 0.8) 50%, white 50%) bottom left / 2px 200% no-repeat;
+
+    filter: blur(6px);
+    /* 🔥 dá o efeito glow */
+}
 
 .mobile-display {
     display: flex;
@@ -369,15 +393,16 @@ body {
 
 @media (min-width: 1024px) {
     .card-produto {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 230px;
     }
 }
 
 .card-img {
     width: 90%;
     margin: auto;
-    object-fit: cover;
+    object-fit:contain;
+    overflow: hidden;
 }
 
 .no-shrink {
@@ -447,7 +472,6 @@ body {
 }
 
 #divPerfil {
-    background-image: url('../img/wallpaper-dark.jpg');
     background-position: start;
     background-repeat: no-repeat;
     background-size: cover;

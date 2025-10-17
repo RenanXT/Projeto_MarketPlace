@@ -21,21 +21,73 @@ class Usuario
         $this->conexao = $c;
     }
 
+    public function cadastrarUsuario()
+    {
+        try {
+            // Extrai as variáveis do POST
+            extract($_POST, EXTR_SKIP);
+
+            // Cria o hash da senha
+            $senha = password_hash($txtSenha ?? '', PASSWORD_DEFAULT);
+
+            // Prepara o INSERT
+            $sql = "INSERT INTO usuario 
+                (nome, sobrenome, nome_social, genero, telefone, cpf_cnpj, data_nascimento, email, usuario, senha)
+                VALUES 
+                (:nome, :sobrenome, :nome_social, :genero, :telefone, :cpf_cnpj, :data_nascimento, :email, :usuario, :senha)";
+
+            $stmt = $this->conexao->prepare($sql);
+
+            // Executa o INSERT
+            $sucesso = $stmt->execute([
+                ':nome' => $txtNome ?? '',
+                ':sobrenome' => $txtSobrenome ?? '',
+                ':nome_social' => $txtNomeSocial ?? '',
+                ':genero' => $txtGenero ?? '',
+                ':telefone' => $txtTelefone ?? '',
+                ':cpf_cnpj' => $txtCpfCnpj ?? '',
+                ':data_nascimento' => $txtDataNascimento ?? '',
+                ':email' => $txtEmail ?? '',
+                ':usuario' => $txtUsuario ?? '',
+                ':senha' => $senha
+            ]);
+
+            // Se inseriu com sucesso, busca os dados do usuário
+            if ($sucesso) {
+                $novoId = $this->conexao->lastInsertId();
+                $stmt2 = $this->conexao->prepare("SELECT * FROM usuario WHERE id_usuario = :id");
+                $stmt2->execute([':id' => $novoId]);
+                $dados = $stmt2->fetch(PDO::FETCH_ASSOC); // array associativo
+                return $dados;
+            }
+
+            return false;
+
+        } catch (PDOException $e) {
+            echo '[ERRO] Não foi possível criar a conta -> ' . $e->getMessage();
+            return false;
+        }
+    }
+
+
     public function ConsultarUsuario($u, $s)
     {
         try {
-                $sql = "SELECT * FROM usuario WHERE usuario = :usuario and senha = :senha";
-                $stmt = $this->conexao->prepare($sql);
-                $stmt->bindParam(':usuario', $u, PDO::PARAM_STR);
-                $stmt->bindParam(':senha', $s, PDO::PARAM_STR);
-                $stmt->execute();
-                $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+            $sql = "SELECT * FROM usuario WHERE usuario = :usuario";
+            $stmt = $this->conexao->prepare($sql);
+            $stmt->bindParam(':usuario', $u, PDO::PARAM_STR);
+            $stmt->execute();
+            $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($dados && password_verify($s, $dados[0]['senha'])) {
                 return $dados;
+            } else {
+                return [];
+            }
         } catch (PDOException $e) {
-            echo '[ERRO] Usuario e senha incorretos ->  '.$e.'';
+            echo '[ERRO] Usuario e senha incorretos ->  ' . $e . '';
         }
     }
+
     public function definirDados($dados)
     {
         foreach ($dados as $chave => $valor) {

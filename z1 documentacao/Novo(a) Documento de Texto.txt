@@ -1,13 +1,169 @@
-CREATE TABLE endereco (
-    id_endereco int (11) AUTO_INCREMENT PRIMARY KEY,
-    rua varchar(150) NOT NULL,
-    bairro varchar(100) NOT null,
-    cidade varchar (100) not null,
-    cep varchar (9) not null,
-    complemento varchar (100) not null,
-    estado varchar (2) not null,
-    id_usuario int (11) not null,
-    id_loja int (11) not null,
-	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
-	FOREIGN KEY (id_loja) REFERENCES loja(id_loja)
-    );
+-- Tabela Usuário
+
+CREATE TABLE Usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    sobrenome VARCHAR(100),
+    nome_social VARCHAR(100),
+    genero VARCHAR(50),
+    telefone VARCHAR(20),
+    cpf_cnpj VARCHAR(20),
+    data_nascimento DATE,
+    email VARCHAR(100),
+    usuario VARCHAR(50),
+    senha VARCHAR(255),
+    banner VARCHAR(255),
+    pontuacao INT
+);
+
+-- Tabela Loja
+
+CREATE TABLE Loja (
+    id_loja INT AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT,
+    nome VARCHAR(100),
+    descricao TEXT,
+    telefone VARCHAR(20),
+    cpf_cnpj VARCHAR(20),
+    email VARCHAR(100),
+    usuario VARCHAR(50),
+    senha VARCHAR(255),
+    banner VARCHAR(255)
+);
+
+-- Tabela Endereco
+
+CREATE TABLE Endereco (
+    id_endereco INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_loja INT,
+    cidade VARCHAR(100),
+    bairro VARCHAR(100),
+    rua VARCHAR(100),
+    numero VARCHAR(20),
+    logradouro VARCHAR(255),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja)
+);
+
+-- Tabela Produto
+
+CREATE TABLE Produto (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_loja INT,
+    nome VARCHAR(100),
+    descricao TEXT,
+    preco DECIMAL(10,2),
+    quantidade INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja)
+);
+
+-- Tabela Imagem_produto
+
+CREATE TABLE Imagem_produto (
+    id_arquivo INT AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT,
+    nome_arquivo VARCHAR(255),
+    tipo_arquivo VARCHAR(50),
+    caminho_arquivo VARCHAR(255),
+    tamanho_arquivo INT,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto)
+);
+
+-- Tabela Pedido
+
+CREATE TABLE Pedido (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    descricao TEXT,
+    id_usuario INT,
+    id_loja INT,
+    valor DECIMAL(10,2),
+    estado VARCHAR(50),
+    endereco VARCHAR(255),
+    quantidade INT,
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja)
+);
+
+-- Tabela Pagamento
+
+CREATE TABLE Pagamento (
+    id_pagamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_pedido INT,
+    valor DECIMAL(10,2),
+    data_criacao DATETIME,
+    status VARCHAR(50),
+    tipo_pagamento VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
+);
+
+-- Tabela Suporte
+
+CREATE TABLE Suporte (
+    id_duvida INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    mensagem TEXT,
+    data_envio DATETIME,
+    status VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+-- Tabela Notificação
+
+CREATE TABLE Notificacao (
+    id_notificacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_loja INT,
+    tipo VARCHAR(50),
+    assunto VARCHAR(255),
+    mensagem TEXT,
+    data_envio DATETIME,
+    remetente VARCHAR(100),
+    destinatario VARCHAR(100),
+    estado VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja)
+);
+
+-- Tabela Avaliacao(Usuario)
+
+CREATE TABLE AvaliacaoUsuario (
+    id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_loja INT,
+    id_usuario INT,
+    id_compra INT,
+    pontuacao INT,
+    data_avaliacao DATETIME,
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+
+-- Tabela Opiniao(Produto)
+CREATE TABLE OpiniaoProduto (
+    id_opiniao INT AUTO_INCREMENT PRIMARY KEY,
+    id_produto INT,
+    id_usuario INT,
+    texto_opiniao TEXT,
+    avaliacao INT,
+    FOREIGN KEY (id_produto) REFERENCES Produto(id_produto),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
+);
+
+-- Tabela ComprasHistorico
+
+CREATE TABLE ComprasHistorico (
+    id_compra INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT,
+    id_loja INT,
+    descricao TEXT,
+    data_compra DATETIME,
+    valor_total DECIMAL(10,2),
+    status_compra VARCHAR(50),
+    FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario),
+    FOREIGN KEY (id_loja) REFERENCES Loja(id_loja)
+);

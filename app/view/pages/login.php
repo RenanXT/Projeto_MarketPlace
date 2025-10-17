@@ -21,7 +21,7 @@
 
         </div>
     </div>
-    <script src="../public/js/loadLogin.js"></script>
+    <script src="../public/js/login-load.js"></script>
 
 </body>
 

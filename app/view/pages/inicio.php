@@ -1,5 +1,7 @@
 <?php include_once __DIR__ . '/../layouts/html_header.php'; ?>
-<?php include_once __DIR__ . '/../layouts/BarraNav.php'; ?>
+<?php include_once __DIR__ . '/../layouts/BarraNav.php';
+?>
+
 <div id="Content" class="d-flex flex-column w-100 gap-3 p-2 overflow-auto">
     <div class="container-fluid w-100 mb-4">
         <div
@@ -19,11 +21,13 @@
             </div>
             <div class="col-3 mt-3">
                 <div class="d-flex flex-column border border-dark w-100 glow-hover">
-                    <img class="w-100 h-60 p-1" src="<?php echo '../public/img/wallpaper-dark.jpg'; ?>" alt="">
+                    <img class="w-100 h-60 p-1" src="<?php echo '/'.$Usuario['banner'];?>" alt="">
                     <div class="d-flex flex-column w-100 h-40 content-center p-3 bg-DarkGray">
                         <i class="fa-solid fa-circle-user fs-1 text-white"></i>
-                        <h2 class="text-start text-white">RyukXT</h2>
-                        <h5 class="text-start text-secondary mb-4">#000645</h5>
+                        <h2 class="text-start text-white"><?php echo $Usuario['nome_social']; ?></h2>
+                        <h5 class="text-start text-secondary mb-4">#
+                            <?php echo str_pad($Usuario['id_usuario'], 3, "0", STR_PAD_LEFT); ?>
+                        </h5>
                     </div>
                 </div>
             </div>
