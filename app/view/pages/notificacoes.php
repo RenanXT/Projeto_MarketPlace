@@ -30,34 +30,53 @@
         <div
             class="d-flex flex-column gap-2 w-90 h-100 bg-content border  border-secondary rounded-3 overflow-auto mt-5">
             <?php if (!empty($dados)) {
-                foreach ($dados as $noticacoes):
-                    ?>
-                    <form action="" method="POST" id="txtMsg"
-                        class="d-flex w-100 p-3 border justify-content-between align-items-center border-secondary">
-                        <span class="d-flex gap-2">
-                            <button id="btnStatus" type="button" class="btn border-secondary glow-hover"><i
-                                    class="fa-solid fa-check text-white fw-bold p-2"></i></button>
+                foreach ($dados as $notificacoes):
 
-                            <button type="button" class="btnData d-flex content-center gap-2 btn">
+                    $id = $notificacoes['id_notificacao'];
+                    ?>
+
+                    <form id="form_<?= $id ?>"
+                        class="d-flex w-100 p-3 border justify-content-between align-items-center border-secondary">
+
+                        <span class="d-flex gap-2">
+
+                            <button id="btnStatus_<?= $id ?>" type="button" class="btn border-secondary glow-hover">
+                                <i class="fa-solid fa-check text-white fw-bold p-2"></i>
+                            </button>
+
+                            <button id="btnData_<?= $id ?>" type="button" class="btnData d-flex content-center gap-2 btn">
                                 <p class="text-white fw-bold m-auto">
-                                    <?php echo '#00' . $noticacoes['destinatario'] . ' RyukXT'; ?>
+                                    <?= '#00' . $notificacoes['destinatario'] . ' RyukXT' ?>
                                 </p>
                                 <p class="text-white fw-bold m-auto"> - </p>
-                                <p class="text-white fw-bold m-auto"><?php echo $noticacoes['assunto']; ?></p>
+                                <p class="text-white fw-bold m-auto"><?= $notificacoes['assunto'] ?></p>
                             </button>
+
                         </span>
+
                         <span class="d-flex gap-4">
-                            <button type="button" class="btn btnResponder"><i
-                                    class="fa-solid fa-share fs-3 text-white"></i></button>
-                            <button id="txtArquivar" type="button" class="btn"><i
-                                    class="fa-solid fa-folder fs-3 text-white"></i></button>
-                            <button id="txtApagar" type="button" class="btn"><i
-                                    class="fa-solid fa-trash fs-3 text-white"></i></button>
-                            <input type="hidden" class="txtDados" value='<?= json_encode($noticacoes) ?>'>
+
+                            <button id="btnResponder_<?= $id ?>" type="button" class="btn btnResponder">
+                                <i class="fa-solid fa-share fs-3 text-white"></i>
+                            </button>
+
+                            <button id="btnArquivar_<?= $id ?>" type="button" class="btn">
+                                <i class="fa-solid fa-folder fs-3 text-white"></i>
+                            </button>
+
+                            <button id="btnApagar_<?= $id ?>" type="button" class="btn">
+                                <i class="fa-solid fa-trash fs-3 text-white"></i>
+                            </button>
+
+                            <input id="dados_<?= $id ?>" type="hidden" class="txtDados"
+                                value='<?= json_encode($notificacoes) ?>'>
+
                         </span>
+
                     </form>
 
                 <?php endforeach;
+
             } else {
                 echo '<div class="d-flex content-center h-100 p-3"> 
                     <button class="d-flex gap-2 btn">
@@ -71,7 +90,7 @@
             <div id="txtDetalhes" class="d-none flex-column content-center w-100 gap-2">
                 <h3 id="txtAssunto" class="fw-bold text-white border-bottom
                            border-secondary w-90 mt-5 p-2 text-uppercase">
-                    
+
                 </h3>
                 <div class="d-flex flex-row justify-content-start w-90 gap-2 p-2">
                     <button type="button" id="btnVoltar" class="btn"><i

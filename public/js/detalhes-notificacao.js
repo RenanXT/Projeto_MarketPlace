@@ -4,40 +4,33 @@
 
 try {
     const FormDados = document.querySelectorAll('form#txtMsg');
-    const btnDetalhes = document.querySelectorAll('button.btnData');
     const detalhes = document.querySelector('div#txtDetalhes');
 
-    btnDetalhes.forEach(btn => {
-        btn.addEventListener('click', () => {
+   const btns = document.querySelectorAll('.btnData');
 
-            function ativarDiv() {
+btns.forEach(btn => {
 
-                FormDados.forEach(form => {
-                    form.classList.remove('d-flex');
-                    form.classList.add('d-none');
-                })
+    btn.addEventListener('click', () => {
+        
+        const id = btn.id.split('_')[1]; 
 
-                detalhes.classList.remove('d-none');
-                detalhes.classList.add('d-flex');
-            }
-            ativarDiv();
+        const json = JSON.parse(document.getElementById(`dados_${id}`).value);
 
-            const Dados = JSON.parse(document.querySelector('input.txtDados').value);
+        document.getElementById("txtAssunto").textContent = json.assunto;
+        document.getElementById("txtDadosR").textContent = json.nome;
+        document.getElementById("txtEmailLoja").textContent = json.email;
+        document.getElementById("txtMsg").textContent = json.mensagem;
+        
+        document.getElementById("txtDetalhes").classList.remove('d-none');
+        document.getElementById("txtDetalhes").classList.add('d-flex');
 
-            const assunto = document.querySelector('h3#txtAssunto');
-            const dadosR = document.querySelector('p#txtDadosR');
-            const emailLoja = document.querySelector('p#txtEmailLoja');
-            const user = document.querySelector('p#txtUser');
-            const msg = document.querySelector('p#txtMsg');
-            assunto.textContent = Dados.assunto;
-            dadosR.textContent = Dados.nome;
-            emailLoja.textContent = Dados.email;
-            msg.textContent = Dados.mensagem;
-            console.log(Dados);
-
-
+        document.querySelectorAll('form[id^="form_"]').forEach(f => {
+            f.classList.add('d-none');
         });
+
     });
+
+});
 
 
 
