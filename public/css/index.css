@@ -15,22 +15,22 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;              
-  height: 8px;             
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #111;         
-  border-radius: 10px;
+    background: #111;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #555;         
-  border-radius: 5px;
+    background: #555;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #999;
+    background: #999;
 }
 
 .blurContent {
@@ -85,6 +85,9 @@ body {
 .h-20 {
     height: 20%;
 }
+.w-10 {
+    width: 10%;
+}
 
 .w-20 {
     width: 20%;
@@ -131,7 +134,7 @@ body {
 }
 
 .bg-content {
-   backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     background-color: rgba(0, 0, 0, 0.377);
 }
@@ -309,10 +312,12 @@ body {
         background-position: right top, right bottom, left bottom, left top;
     }
 }
-.glow-border{
-   position: relative;
+
+.glow-border {
+    position: relative;
     display: inline-block;
 }
+
 .glow-border::before {
     content: "";
     position: absolute;
@@ -401,9 +406,23 @@ body {
 .card-img {
     width: 90%;
     margin: auto;
-    object-fit:contain;
+    object-fit: contain;
     overflow: hidden;
 }
+
+#detalhesId {
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+#detalhesId.visivel {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
 
 .no-shrink {
     flex-shrink: 0;

@@ -52,12 +52,11 @@ class Usuario
                 ':senha' => $senha
             ]);
 
-            // Se inseriu com sucesso, busca os dados do usuário
             if ($sucesso) {
                 $novoId = $this->conexao->lastInsertId();
                 $stmt2 = $this->conexao->prepare("SELECT * FROM usuario WHERE id_usuario = :id");
                 $stmt2->execute([':id' => $novoId]);
-                $dados = $stmt2->fetch(PDO::FETCH_ASSOC); // array associativo
+                $dados = $stmt2->fetch(PDO::FETCH_ASSOC); 
                 return $dados;
             }
 

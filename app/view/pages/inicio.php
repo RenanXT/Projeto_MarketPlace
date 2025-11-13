@@ -21,7 +21,7 @@
             </div>
             <div class="col-3 mt-3">
                 <div class="d-flex flex-column border border-dark w-100 glow-hover">
-                    <img class="w-100 h-60 p-1" src="<?php echo '/'.$Usuario['banner'];?>" alt="">
+                    <img class="w-100 h-60 p-1" src="<?php echo '/' . $Usuario['banner']; ?>" alt="">
                     <div class="d-flex flex-column w-100 h-40 content-center p-3 bg-DarkGray">
                         <i class="fa-solid fa-circle-user fs-1 text-white"></i>
                         <h2 class="text-start text-white"><?php echo $Usuario['nome_social']; ?></h2>
@@ -45,29 +45,24 @@
         ?>
     </div>
     <!-- teste 2 -->
+    <?php include_once __DIR__ . '/../../model/produtosLista.php'; ?>
     <div class="d-flex m-auto flex-wrap w-100">
         <h3 class="text-center m-auto text-white fw-bold p-5 m-4 w-100 border-top">PRODUTOS EM DESTAQUE</h3>
         <p class="w-100 text-end text-white fw-bold m-auto">Ver Mais</p>
 
         <div class="d-flex flex-wrap content-center gap-2 w-100 p-1">
             <?php
-            for ($i = 0; $i < 8; $i++) {
-                echo '
+            foreach ($produtos as $lista) {
+                if ($lista['avaliacao'] >= 4) {
+                    echo '
     <div class="card-produto bg-content glow-hover text-white p-2">
-        <img class="card-img" src="../public/img/solar.png" alt="">
+        <img class="card-img" src="'.$lista['caminho_arquivo'].'" alt="">
         <span class="text-center w-100 h-50">
-            <p>' . limitarPalavras('Guitarra Solar ab6c.4 Preto fosco', 4) . '</p>
-            <p>R$ 2599,99</p>
+            <p>' . limitarPalavras($lista['nome'], 4) . '</p>
+            <p>R$ '.$lista['preco'].'</p>
         </span>
-    </div>
-    <div class="card-produto bg-content glow-hover text-white p-2">
-        <img class="card-img" src="../public/img/wallpaper-dark.jpg" alt="">
-        <span class="text-center w-100 h-50">
-            <p>' . limitarPalavras('Guitarra Solar ab6c.4 Preto fosco', 4) . '</p>
-            <p>R$ 2599,99</p>
-        </span>
-    </div>
-    ';
+    </div>';
+                }
             }
             ?>
 
@@ -93,10 +88,10 @@
             </span>
         </div>
         <div class="d-flex bg-content rounded-4 border border-dark p-1 text-white h-100">
-            <i class="fa-regular fa-eye fs-1 m-3"></i>
+        <i class="fa-solid fa-heart fs-1 m-3"></i>
             <span class="d-flex flex-column m-2">
                 <p class="fw-bold">45</p>
-                <p class="fw-bold">produtos visualizados</p>
+                <p class="fw-bold">Marcados como favoritos</p>
             </span>
         </div>
 

@@ -4,23 +4,26 @@
 <div id="Content" class="d-flex flex-column w-100 p-1 overflow-auto">
 
     <div class="d-flex gap-2 w-100 h-100 overflow-hidden">
-        <div class="d-flex flex-column w-25 h-75 p-5 gap-3 bg-content border border-dark rounded-4 border-dark">
-            <span class="d-flex w-100 gap-2">
-                <i class="fa-solid fa-magnifying-glass m-auto fs-2 text-white"></i>
-                <input class="form-control bg-transparent border-secondary m-auto text-white" type="tetx">
-            </span>
-            <button class="d-flex justify-content-between text-white fw-bold btn bg-DarkGray text-start menu-btn">Todos
+        <form name="txtFiltro" action="" method="POST"
+            class="d-flex flex-column w-25 h-75 p-5 gap-3 bg-content border border-dark rounded-4 border-dark">
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn bg-DarkGray text-start menu-btn">Todos
                 os
                 Produtos <p>(156)</p></button>
-            <button class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Eletrônicos <p>
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Eletrônicos <p>
                     (156)</p></button>
-            <button class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Gaming <p>(156)
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Gaming <p>(156)
                 </p></button>
-            <button class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Moda <p>(156)
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Moda <p>(156)
                 </p></button>
-            <button class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Casa &
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Casa &
                 Decoração <p>(156)</p></button>
-            <button class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Esportes <p>
+            <button type="submit" name="btnFiltro"
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">Esportes <p>
                     (156)</p></button>
 
             <p class="text-white fw-bold">Faixa de Preço</p>
@@ -30,7 +33,7 @@
                 <input class="form-control bg-transparent border-secondary" type="number" name="" id=""
                     placeholder="Max">
             </span>
-        </div>
+        </form>
         <div class="d-flex flex-column align-items-start gap-3 w-75 h-100">
             <div class="d-flex justify-content-between w-100 p-3 border border-dark rounded-3" style="heigth: 25%;">
                 <span class="d-flex gap-2 w-75 h-100 content-center">
@@ -39,113 +42,97 @@
                 </span>
                 <i class="fa-solid fa-list fs-3 text-white"></i>
             </div>
+            <?php include_once dirname(__DIR__) . '/../model/function-limitarPalavras.php'; ?>
             <div
                 class="d-flex flex-column w-100 h-90 p-3 gap-3 bg-content border border-dark rounded-4 border-dark overflow-auto">
-                <form method="POST" id="txtForm" class="d-flex flex-row flex-wrap gap-1 rounded-2 border-dark">
-                    <?php
-                    function limitarPalavras($texto, $limite)
-                    {
-                        $palavras = explode(" ", $texto);
-                        if (count($palavras) > $limite) {
-                            return implode(" ", array_slice($palavras, 0, $limite)) . "...";
-                        }
-                        return $texto;
-                    }
-                    ?>
-                    <?php
-                    include_once __DIR__ . '/../../model/produtos.php';
-                    foreach ($produtos as $lista) {
-                        echo '<div class="card-produto bg-content glow-hover text-white p-1">
-            <img class="card-img" src="' . $lista['caminho_arquivo'] . '" alt="">
-            <button class="btn text-white h-40">
-            <span class="text-center w-100 h-50"><p>' . limitarPalavras($lista['nome'], 3) . '</p>
-            <p>R$ ' . $lista['preco'] . '</p></span>
-            </button>
-        </div>';
-                    } ?>
+                <form method="POST" id="txtForm"
+                    class="d-flex flex-row flex-wrap gap-1 rounded-2 border-dark position-relative">
+                    <?php include_once __DIR__ . '/../../model/produtosLista.php'; ?>
+
+                    <?php foreach ($produtos as $lista): ?>
+                        <div class="card-produto bg-content glow-hover text-white p-1">
+                            <img class="card-img" src="<?= $lista['caminho_arquivo'] ?>" alt="">
+                            <button type="button" class="btnEnviar btn text-white h-40">
+                                <span class="text-center w-100 h-50">
+                                    <p><?= limitarPalavras($lista['nome'], 3) ?></p>
+                                    <p>R$ <?= $lista['preco'] ?></p>
+                                </span>
+                            </button>
+                            <input type="hidden" name="DataProd" value='<?= json_encode($lista) ?>'>
+                        </div>
+                    <?php endforeach; ?>
                 </form>
 
+
                 <div id="detalhesId" class="d-flex flex-row h-100 w-100 position-relative">
-                    <button id="btnVoltar" class="position-absolute btn text-white fw-bold fs-1" style="top: -10px;">
-                        < </button>
-                            <div class="d-flex flex-column w-75 h-100">
-                                <img src="<?php echo '../public/img/solar.png'; ?>" alt="">
-                                <h3 class="text-white fw-bold p-3 border-bottom border-white w-75">DESCRIÇÃO</h3>
-                                <p class="text-white p-3 w-50">
-                                    Desfrute com a guitarra Solar da conexão com a música. Com este instrumento você vai
-                                    descobrir novos acordes, cantar suas canções e curtirá da vida musical. Explore,
-                                    amplifique
-                                    sua criatividade e desenvolva a sua paixão.
+                    <div class="d-flex align-items-start">
+                        <button id="btnVoltar" class="btn fw-bold fs-1">
+                            <i class="fa-solid fa-circle-chevron-left fs-1"></i>
+                        </button>
+                    </div>
+                    <div class="d-flex flex-column gap-2 w-75 h-100">
+                        <span class="d-flex w-100">
 
-                                    Uma forma para cada estilo musical
-                                    Esta guitarra Solar Type A é fabricada com os mais altos padrões possíveis que
-                                    garantem um
-                                    excelente instrumento e interpretação incomparável. Além disso, sua estética faz
-                                    este
-                                    produto brilhar, com acabamentos muito cuidados, cores vibrantes e atraentes.
-
-                                    Material versátil
-                                    Sua madeira de mogno a torna num produto versátil e popular. O tom é marcado pela
-                                    afeição e
-                                    o equilíbrio, com agudos suaves e nuances harmônicas carregadas.</p>
-                                <p class="text-white p-3 w-50">Caracteristicas:<br>
-                                    Tipo de madeira do corpo: Mogno.<br>
-                                    Acabamento do corpo: Fosco.<br>
-                                    Material do diapasão: Ébano.<br>
-                                    Orientação da mão: Destro.<br>
-                                    Feita em mogno com acabamento de fosco.<br>
-                                    Com 6 cordas e 24 trastes de tamanho jumbo.<br>
-                                    O comprimento da escala é de 647.7 mm.<br>
-                                    A ponte é tremolo.<br>
-                                    Inclui 2 microfones humbucker.<br>
-                                    Controles de chave seletora de captadores.<br>
-                                    Alavanca incluída.</p>
+                            <div class="d-flex justify-content-between mt-5 flex-column w-10 h-75 m-4">
+                                <?php foreach ($ImgAlt as $Alt):?>
+                                    <img class="glow-hover" id="ImgAlt" src="<?php echo $Alt['caminho_arquivo']?>" alt="erro">
+                                <?php endforeach; ?>
+                                
                             </div>
-                            <div class="d-flex flex-column w-25 h-100">
-                                <h4 class="text-white fw-bold p-3 border-bottom border-white fs-5">Guitarra elétrica
-                                    Solar
-                                    A2.6FR lemon neon fosco</h4>
-                                <h3 class="text-white fw-bold p-3">R$ 8.490</h3>
-                                <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Comprar Agora</button>
-                                <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Adicionar ao Carrinho</button>
-                                <div
-                                    class="d-flex flex-column gap-2 p-3 mt-3 w-100 h-100 bg-content border border-dark rounded-3">
-                                    <p class="text-white fw-bold fs-4">OPINIÕES DE OUTROS USUARIOS</p>
-                                    <div class="d-flex flex-column overflow-auto">
-                                        <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
-                                            Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
-                                            A
-                                            alavanca
-                                            responde super bem também.
-                                        </div>
-                                        <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
-                                            Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
-                                            A
-                                            alavanca
-                                            responde super bem também.
-                                        </div>
-                                        <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
-                                            Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
-                                            A
-                                            alavanca
-                                            responde super bem também.
-                                        </div>
-                                        <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
-                                            Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
-                                            A
-                                            alavanca
-                                            responde super bem também.
-                                        </div>
-                                        <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
-                                            Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
-                                            A
-                                            alavanca
-                                            responde super bem também.
-                                        </div>
-                                    </div>
+
+                            <img id="imgProd" class="w-75 h-100 object-fit-contain" src="" alt="imagem nao encontrada">
+                        </span>
+                        <h3 class="text-white fw-bold p-3 border-bottom border-white w-75">DESCRIÇÃO</h3>
+                        <p id="txtDesc" class="text-white p-3 w-50"></p>
+                        <p id="txtCaract" class="text-white p-3 w-50">Caracteristicas:<br></p>
+                    </div>
+                    <div class="d-flex flex-column w-25 h-100">
+                        <h4 id="txtNome" class="text-white fw-bold p-3 border-bottom border-white fs-5">Guitarra
+                            elétrica</h4>
+                        <h3 id="txtPreco" class="text-white fw-bold p-3"></h3>
+                        <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Comprar
+                            Agora</button>
+                        <button class=" text-white fw-bold btn bg-DarkGray m-2 glow-hover">Adicionar ao
+                            Carrinho</button>
+                        <div
+                            class="d-flex flex-column gap-2 p-3 mt-3 w-100 h-100 bg-content border border-dark rounded-3">
+                            <p class="text-white fw-bold fs-4">OPINIÕES DE OUTROS USUARIOS</p>
+                            <div class="d-flex flex-column overflow-auto">
+                                <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
+                                    Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
+                                    A
+                                    alavanca
+                                    responde super bem também.
+                                </div>
+                                <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
+                                    Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
+                                    A
+                                    alavanca
+                                    responde super bem também.
+                                </div>
+                                <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
+                                    Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
+                                    A
+                                    alavanca
+                                    responde super bem também.
+                                </div>
+                                <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
+                                    Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
+                                    A
+                                    alavanca
+                                    responde super bem também.
+                                </div>
+                                <div class="rounded-3 bg-content border border-dark p-3 w-90 h-40 text-white">
+                                    Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
+                                    A
+                                    alavanca
+                                    responde super bem também.
                                 </div>
                             </div>
+                        </div>
+                    </div>
                 </div>
+        
                 <script src="../public/js/produtos-detalhes.js"></script>
             </div>
         </div>
