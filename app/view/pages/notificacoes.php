@@ -35,27 +35,26 @@
                     <form action="" method="POST" id="txtMsg"
                         class="d-flex w-100 p-3 border justify-content-between align-items-center border-secondary">
                         <span class="d-flex gap-2">
-                            <button type="button" class="btn border-secondary glow-hover" id="btnStatus"><i
+                            <button id="btnStatus" type="button" class="btn border-secondary glow-hover"><i
                                     class="fa-solid fa-check text-white fw-bold p-2"></i></button>
 
-                            <button type="button" id="btnData" class="d-flex content-center gap-2 btn">
-                                <p id="txtRemetente" class="text-white fw-bold m-auto">
+                            <button type="button" class="btnData d-flex content-center gap-2 btn">
+                                <p class="text-white fw-bold m-auto">
                                     <?php echo '#00' . $noticacoes['destinatario'] . ' RyukXT'; ?>
                                 </p>
                                 <p class="text-white fw-bold m-auto"> - </p>
-                                <p id="txtAssunto" class="text-white fw-bold m-auto"><?php echo $noticacoes['assunto']; ?></p>
+                                <p class="text-white fw-bold m-auto"><?php echo $noticacoes['assunto']; ?></p>
                             </button>
                         </span>
                         <span class="d-flex gap-4">
-                            <button id="txtResponder" type="button" class="btn"><i
+                            <button type="button" class="btn btnResponder"><i
                                     class="fa-solid fa-share fs-3 text-white"></i></button>
                             <button id="txtArquivar" type="button" class="btn"><i
                                     class="fa-solid fa-folder fs-3 text-white"></i></button>
                             <button id="txtApagar" type="button" class="btn"><i
                                     class="fa-solid fa-trash fs-3 text-white"></i></button>
-                            <input type="hidden" id="txtDados" value='<?= json_encode($noticacoes) ?>'>
+                            <input type="hidden" class="txtDados" value='<?= json_encode($noticacoes) ?>'>
                         </span>
-
                     </form>
 
                 <?php endforeach;
@@ -69,58 +68,71 @@
             }
             ?>
 
-            <div id="txtDetalhes" class=" flex-column content-center w-100 gap-2">
+            <div id="txtDetalhes" class="d-none flex-column content-center w-100 gap-2">
                 <h3 id="txtAssunto" class="fw-bold text-white border-bottom
                            border-secondary w-90 mt-5 p-2 text-uppercase">
-                    assunto
+                    
                 </h3>
                 <div class="d-flex flex-row justify-content-start w-90 gap-2 p-2">
                     <button type="button" id="btnVoltar" class="btn"><i
                             class="fa-solid fa-arrow-left text-white fs-3"></i></button>
-                    <button type="button" id="btnResponder" class="btn"><i
+                    <button type="button" class="btn btnResponder"><i
                             class="fa-solid fa-paper-plane text-white fs-3"></i></button>
                     <button type="button" id="btnExcluir" class="btn"><i
                             class="fa-solid fa-trash text-white fs-3"></i></button>
                 </div>
                 <div class="d-flex flex-column p-3 w-90">
-                    <p id="txtDadosR" class="text-white">Guest barrosrenan164@gmail.com</p>
-                    <p id="txtUser" class="text-white mb-3">Para: RyukXT</p>
+                    <span class="d-flex flex-row gap-1">
+                        <p id="txtDadosR" class="text-white"></p>
+                        <p id="txtEmailLoja" class="text-white mb-3"></p>
+                    </span>
+                    <span class="d-flex flex-row gap-1">
+                        <p class="text-white mb-3">Para: </p>
+                        <p id="txtUser" class="text-white mb-3"><?php echo $NomeUser ?></p>
+                    </span>
 
                     <p class="text-white">Mensagem:</p>
                     <p id="txtMsg" class="text-white"></p>
                 </div>
 
             </div>
+            <input type="hidden" name="" id="txtJson">
 
-
-            <div id="divResp" class="d-none flex-column w-90 h-90 p-3 ">
+            <div id="divResp" class="d-none flex-column w-90 h-90 p-3">
                 <span class="d-flex align-items-center gap-2 mb-3">
                     <button id="btnvoltarLista" class="btn" style="max-width:10%; min-width:5%">
-                    <i class="fa-solid fa-arrow-left text-white fs-3"></i></button>
-                </button>
-                <h3 class="fw-bold text-white mt-auto">RESPONDER NOTIFICACÃO</h3>
+                        <i class="fa-solid fa-arrow-left text-white fs-3"></i></button>
+                    </button>
+                    <h3 class="fw-bold text-white mt-auto">RESPONDER NOTIFICACÃO</h3>
                 </span>
-                <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
-                    <div class="d-flex align-items-center gap-4 w-50">
-                        <p class="fw-bold text-white">De:</p>
-                        <p class="fw-bold text-white"> RyukXT</p>
-                        <p class="fw-bold text-white"> decryuk@gmail.com</p>
+                <form action="" method="POST" id="txtForm">
+                    <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
+                        <div class="d-flex align-items-center gap-4 w-50">
+                            <p class="fw-bold text-white">De:</p>
+                            <p id="txtSender" class="fw-bold text-white"><?php echo $NomeUser; ?></p>
+                            <p id="txtEmail" class="fw-bold text-white"><?php echo $EmailUser ?></p>
+                        </div>
+                        <div class="d-flex align-items-center gap-4 w-50">
+                            <p class="fw-bold text-white">Para:</p>
+                            <p id="txtTarget" class="fw-bold text-white"> <?php echo $noticacoes['nome'] ?></p>
+                        </div>
+                        <div class="d-flex align-items-center gap-3 w-75">
+                            <p class="fw-bold text-white m-auto">Assunto:</p>
+                            <input id="txtAssunto"
+                                class="form-control bg-transparent border-secondary text-white"></input>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center gap-4 w-50">
-                        <p class="fw-bold text-white">Para:</p>
-                        <p class="fw-bold text-white"> Guest</p>
-                    </div>
-                    <div class="d-flex align-items-center gap-3 w-75">
-                        <p class="fw-bold text-white m-auto">Assunto:</p>
-                        <input class="form-control bg-transparent border-secondary text-white"></input>
-                    </div>
-                </div>
 
-                <div class="flex-column w-75 p-2 m-auto">
-                    <h3 class="fw-bold text-white">Mensagem:</h3>
-                    <textarea class="form-control bg-transparent border-secondary text-white" id="" class="w-100"
-                        style="height: 300px;"></textarea>
-                </div>
+                    <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
+                        <h3 class="fw-bold text-white">Mensagem:</h3>
+                        <textarea id="txtMsg" class="form-control bg-transparent border-secondary text-white"
+                            class="w-100" style="height: 300px;"></textarea>
+                        <button id="btnMsg" type="button" class="btn bg-DarkGray text-white fs-5 glow-hover"
+                            style="width: 15%;">
+                            ENVIAR <i class="fa-solid fa-paper-plane text-white"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
 

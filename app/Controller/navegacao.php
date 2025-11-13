@@ -18,7 +18,9 @@ if (isset($_POST['btnCriarConta'])) {
 }
 if (!empty($_SESSION['usuarioSession'])) {
     $Usuario = $_SESSION['usuarioSession'];
-$ID = $_SESSION['usuarioSession']['id_usuario'];
+    $ID = $_SESSION['usuarioSession']['id_usuario'];
+    $NomeUser = $_SESSION['usuarioSession']['nome_social'];
+    $EmailUser = $_SESSION['usuarioSession']['email'];
     // BarraNav
     try {
         switch ($pagina) {

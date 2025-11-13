@@ -1,117 +1,74 @@
-// const form = document.querySelector('form#txtMsg');
-// // const check = form.querySelector('button#btnStatus');
-// // const remetente = form.querySelector('p#txtRemetente');
-// // const assunto = form.querySelector('p#txtAssunto');
-// const btn = form.querySelector('button#btnData');
-
-// try {
-
-//   btn.forEach(btn => {
-//         btn.addEventListener('click', () => {
-//             const input = form.querySelector('input#txtDados');
-//             const dados = new FormData();
-//             dados.append('DataProd', input.value);
-
-//             $.ajax({
-//                 url: 'index.php?pagina=notificacoes',
-//                 method: 'POST',
-//                 data: dados,
-//                 processData: false,
-//                 contentType: false,
-//                 success: function (response) {
-//                     alert('enviou');
-//                     console.log(response);
-//                 }
-//             });
-
-//         });
-//     });
-
-// } catch (error) {
-//     console.log('[ERRO] ->', error.message);
-// }
-
-// Pega todos os formulários com o id txtMsg
-const forms = document.querySelectorAll('form#txtMsg');
-const detalhes = document.querySelector('div#txtDetalhes');
-
-const voltar = document.querySelector('button#btnVoltar');
-const responder = document.querySelector('button#btnResponder');
-const excluir = document.querySelector('button#btnExcluir');
-
-detalhes.style.display = 'none';
 
 
-forms.forEach(form => {
-    const btn = form.querySelector('button#btnData');
+// <-----------------------------  Funcoes detalhes  -----------------------------> 
 
-    if (btn) {
-        btn.addEventListener('click', (event) => {
-            event.preventDefault(); // impede o envio padrão do form
+try {
+    const FormDados = document.querySelectorAll('form#txtMsg');
+    const btnDetalhes = document.querySelectorAll('button.btnData');
+    const detalhes = document.querySelector('div#txtDetalhes');
 
-            const input = form.querySelector('input#txtDados');
-            const dados = new FormData();
-            dados.append('DataProd', input.value);
+    btnDetalhes.forEach(btn => {
+        btn.addEventListener('click', () => {
 
-            $.ajax({
-                url: 'index.php?pagina=notificacoes',
-                method: 'POST',
-                data: dados,
-                processData: false,
-                contentType: false,
-                success: function (response) {
+            function ativarDiv() {
 
-                    try {
-                        setTimeout(() => {
+                FormDados.forEach(form => {
+                    form.classList.remove('d-flex');
+                    form.classList.add('d-none');
+                })
 
-                            forms.forEach(form => {
-                                form.classList.remove('d-flex');
-                                form.style.display = 'none';
-                            });
-                            detalhes.style.display = 'flex';
-                        }, 300);
+                detalhes.classList.remove('d-none');
+                detalhes.classList.add('d-flex');
+            }
+            ativarDiv();
 
-                    } catch (error) {
-                        console.log('[ERRO] ->', error);
-                    };
-                    const assunto = document.querySelector('h3#txtAssunto');
-                    const dadosRemetente = document.querySelector('p#txtDadosR');
-                    const DadosUsuario = document.querySelector('p#txtUser');
-                    const Msg = document.querySelector('p#txtMsg');
-                    const jsonData = dados.get('DataProd');
+            const Dados = JSON.parse(document.querySelector('input.txtDados').value);
 
-                    // transforma o texto em objeto JavaScript
-                    const info = JSON.parse(jsonData);
-
-                    // agora sim você pode acessar normalmente:
-                    assunto.textContent = info.assunto;
-                    dadosRemetente.textContent = info.remetente;
-                    DadosUsuario.textContent = info.destinatario;
-                    Msg.textContent = info.mensagem;
+            const assunto = document.querySelector('h3#txtAssunto');
+            const dadosR = document.querySelector('p#txtDadosR');
+            const emailLoja = document.querySelector('p#txtEmailLoja');
+            const user = document.querySelector('p#txtUser');
+            const msg = document.querySelector('p#txtMsg');
+            assunto.textContent = Dados.assunto;
+            dadosR.textContent = Dados.nome;
+            emailLoja.textContent = Dados.email;
+            msg.textContent = Dados.mensagem;
+            console.log(Dados);
 
 
-                },
-                error: function (xhr, status, error) {
-                    console.error('[ERRO AJAX] ->', error);
-                }
-            });
         });
-    }
-});
+    });
 
-voltar.addEventListener('click', voltarLista);
 
-function voltarLista() {
-    try {
-        setTimeout(() => {
 
-            forms.forEach(form => {
-                form.style.display = 'flex';
+
+
+    // <-----------------------------  Funcoes resposta  -----------------------------> 
+
+
+
+    const btnResp = document.querySelectorAll('button.btnResponder');
+    btnResp.forEach(btn => {
+        btn.addEventListener('click', ativarResp);
+    });
+
+    function ativarResp() {
+
+        detalhes.classList.remove('d-flex');
+        detalhes.classList.add('d-none');
+
+        if (FormDados.length > 0) {
+            FormDados.forEach(form => {
+                form.classList.remove('d-flex');
+                form.classList.add('d-none');
             });
-            detalhes.style.display = 'none';
-        }, 300);
+        }
 
-    } catch (error) {
-        console.log('[ERRO] ->', error);
-    };
+        const divResp = document.querySelector('div#divResp');
+        divResp.classList.remove('d-none');
+        divResp.classList.add('d-flex');
+    }
+
+} catch (error) {
+    console.log('[erro] -> -> ->', error)
 }
