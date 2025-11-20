@@ -23,12 +23,13 @@
         </div>
 
         <?php include_once __DIR__ . '/../../model/notificacoesConsulta.php'; ?>
+        <?php $conexao; ?>
 
         <button class="btn bg-DarkGray text-white fw-bold p-2 m-3 w-40 border border-dark glow-hover fw-bold">MARCAR
             TODAS COMO LIDAS</button>
 
         <div
-            class="d-flex flex-column gap-2 w-90 h-100 bg-content border  border-secondary rounded-3 overflow-auto mt-5">
+            class="d-flex flex-column gap-2 w-90 h-100 bg-content border border-secondary rounded-3 overflow-auto mt-5">
             <?php if (!empty($dados)) {
                 foreach ($dados as $notificacoes):
 
@@ -56,10 +57,6 @@
 
                         <span class="d-flex gap-4">
 
-                            <button id="btnResponder_<?= $id ?>" type="button" class="btn btnResponder">
-                                <i class="fa-solid fa-share fs-3 text-white"></i>
-                            </button>
-
                             <button id="btnArquivar_<?= $id ?>" type="button" class="btn">
                                 <i class="fa-solid fa-folder fs-3 text-white"></i>
                             </button>
@@ -70,6 +67,7 @@
 
                             <input id="dados_<?= $id ?>" type="hidden" class="txtDados"
                                 value='<?= json_encode($notificacoes) ?>'>
+                            <input type="hidden" class="idNotificacao" value="<?= $id ?>">
 
                         </span>
 
@@ -95,7 +93,7 @@
                 <div class="d-flex flex-row justify-content-start w-90 gap-2 p-2">
                     <button type="button" id="btnVoltar" class="btn"><i
                             class="fa-solid fa-arrow-left text-white fs-3"></i></button>
-                    <button type="button" class="btn btnResponder"><i
+                    <button type="button" name="btnResponder" class="btn btnResponder fs"><i
                             class="fa-solid fa-paper-plane text-white fs-3"></i></button>
                     <button type="button" id="btnExcluir" class="btn"><i
                             class="fa-solid fa-trash text-white fs-3"></i></button>
@@ -113,9 +111,8 @@
                     <p class="text-white">Mensagem:</p>
                     <p id="txtMsg" class="text-white"></p>
                 </div>
-
             </div>
-            <input type="hidden" name="" id="txtJson">
+
 
             <div id="divResp" class="d-none flex-column w-90 h-90 p-3">
                 <span class="d-flex align-items-center gap-2 mb-3">
@@ -127,25 +124,33 @@
                 <form action="" method="POST" id="txtForm">
                     <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
                         <div class="d-flex align-items-center gap-4 w-50">
-                            <p class="fw-bold text-white">De:</p>
-                            <p id="txtSender" class="fw-bold text-white"><?php echo $NomeUser; ?></p>
-                            <p id="txtEmail" class="fw-bold text-white"><?php echo $EmailUser ?></p>
+                            <p class="fw-bold text-white m-auto">De:</p>
+                            <input id="txtSender" name="txtSender"
+                                class="bg-transparent text-white border border-secondary p-2 rounded-2 fw-bold m-auto"
+                                value="<?php echo $NomeUser; ?>" readonly>
+                            <input id="txtEmail"
+                                class="bg-transparent text-white border border-secondary p-2 rounded-2 fw-bold m-auto"
+                                value="<?php echo $EmailUser ?>" readonly>
                         </div>
                         <div class="d-flex align-items-center gap-4 w-50">
-                            <p class="fw-bold text-white">Para:</p>
-                            <p id="txtTarget" class="fw-bold text-white"> <?php echo $noticacoes['nome'] ?></p>
+                            <p class="fw-bold text-white m-auto">Para:</p>
+                            <input id="txtTarget" name="txtTarget"
+                                class="bg-transparent text-white border border-secondary p-2 rounded-2 fw-bold m-auto">
                         </div>
                         <div class="d-flex align-items-center gap-3 w-75">
                             <p class="fw-bold text-white m-auto">Assunto:</p>
-                            <input id="txtAssunto"
-                                class="form-control bg-transparent border-secondary text-white"></input>
+                            <input id="AssuntoId" name="txtAssunto"
+                                class="form-control bg-transparent border-secondary text-white" readonly>
                         </div>
+                        <input id="lojaID" type="hidden" class="form-control bg-transparent border-secondary text-white"
+                            readonly>
                     </div>
-
+                    <button id="btnSuccess" class="d-none postion-absolute m-auto btn bg-DarkGray text-white">Notificação enviada com sucesso!</button>
                     <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
                         <h3 class="fw-bold text-white">Mensagem:</h3>
-                        <textarea id="txtMsg" class="form-control bg-transparent border-secondary text-white"
+                        <textarea id="txtRespMsg" class="form-control bg-transparent border-secondary text-white"
                             class="w-100" style="height: 300px;"></textarea>
+                        <input type="hidden" name="dataNotificacao" id="dataNotificacao">
                         <button id="btnMsg" type="button" class="btn bg-DarkGray text-white fs-5 glow-hover"
                             style="width: 15%;">
                             ENVIAR <i class="fa-solid fa-paper-plane text-white"></i>

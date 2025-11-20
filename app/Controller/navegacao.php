@@ -21,6 +21,10 @@ if (!empty($_SESSION['usuarioSession'])) {
     $ID = $_SESSION['usuarioSession']['id_usuario'];
     $NomeUser = $_SESSION['usuarioSession']['nome_social'];
     $EmailUser = $_SESSION['usuarioSession']['email'];
+
+    if (isset($_POST['btnResponder'])) {
+        include_once __DIR__. '/../app/model/notificacoesConsulta.php';
+    }
     // BarraNav
     try {
         switch ($pagina) {
@@ -39,6 +43,7 @@ if (!empty($_SESSION['usuarioSession'])) {
                 break;
             case 'notificacoes':
                 include_once __DIR__ . '/../../app/view/pages/notificacoes.php';
+                
                 break;
             // vou fazer o suporte ainda
             case 'sair':
