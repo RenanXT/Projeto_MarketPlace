@@ -87,7 +87,7 @@
 
             <div id="txtDetalhes" class="d-none flex-column content-center w-100 gap-2">
                 <h3 id="txtAssunto" class="fw-bold text-white border-bottom
-                           border-secondary w-90 mt-5 p-2 text-uppercase">
+                           border-secondary w-90 p-2 text-uppercase">
 
                 </h3>
                 <div class="d-flex flex-row justify-content-start w-90 gap-2 p-2">
@@ -114,7 +114,7 @@
             </div>
 
 
-            <div id="divResp" class="d-none flex-column w-90 h-90 p-3">
+            <div id="divResp" class="d-none flex-column w-90 h-90">
                 <span class="d-flex align-items-center gap-2 mb-3">
                     <button id="btnvoltarLista" class="btn" style="max-width:10%; min-width:5%">
                         <i class="fa-solid fa-arrow-left text-white fs-3"></i></button>
@@ -145,11 +145,13 @@
                         <input id="lojaID" type="hidden" class="form-control bg-transparent border-secondary text-white"
                             readonly>
                     </div>
-                    <button id="btnSuccess" class="d-none postion-absolute m-auto btn bg-DarkGray text-white">Notificação enviada com sucesso!</button>
+                    <button id="btnSuccess"
+                        class="d-none postion-absolute m-auto btn bg-DarkGray text-white">Notificação enviada com
+                        sucesso!</button>
                     <div class="d-flex flex-column gap-2 w-75 p-2 m-auto">
                         <h3 class="fw-bold text-white">Mensagem:</h3>
                         <textarea id="txtRespMsg" class="form-control bg-transparent border-secondary text-white"
-                            class="w-100" style="height: 300px;"></textarea>
+                            class="w-100" style="height: 200px;"></textarea>
                         <input type="hidden" name="dataNotificacao" id="dataNotificacao">
                         <button id="btnMsg" type="button" class="btn bg-DarkGray text-white fs-5 glow-hover"
                             style="width: 15%;">
@@ -159,10 +161,26 @@
                 </form>
             </div>
 
+            <div id="divExcluir" class="d-none flex-column w-90 gap-2 p-2">
+                <span class="d-flex gap-2 p-3">
+                    <button type="button" id="btnVoltar" class="btn"><i
+                            class="fa-solid fa-arrow-left text-white fs-3"></i></button>
+                    <p id="txtAssunto" class="w-75 m-2 p-2 text-white fs-3 fw-bold text-uppercase border-2 border-bottom"></p>
+                </span>
+                <h5 class="text-white m-2 p-3 fw-bold">Tem certeza que deseja excluir essa Mensagem?</h5>
+                <textarea id="txtMsg" class="text-start m-2 p-3 w-50 bg-transparent text-white border-0"
+                    style="height: 200px;" disabled>
+                    teste teste teste teste teste
+                </textarea>
+                <span class="d-flex gap-2 w-40 mt-5 p-3 m-2">
+                    <button id="btnDrop" class="btn bg-DarkGray w-40 text-white glow-hover">Excluir</button>
+                    <button id="btnBack" class="btn bg-DarkGray w-40 text-white glow-hover">Cancelar</button>
+                </span>
 
+            </div>
         </div>
         <script src="../public/js/detalhes-notificacao.js"></script>
-        <script src="../public/js/responder-notificacao.js"></script>
+        <script src="../public/js/excluir-notificacao.js"></script>
 
     </div>
 

@@ -19,6 +19,9 @@ forms.forEach(form => {
         })
         box.classList.remove('d-none');
         box.classList.add('d-flex');
+        box.classList.add('h-0');
+        box.style.opacity = '0';
+        
         console.log(Dados)
 
         setTimeout(() => {
@@ -88,8 +91,6 @@ forms.forEach(form => {
 
                     }))
                 })
-
-
 
             })
         })
