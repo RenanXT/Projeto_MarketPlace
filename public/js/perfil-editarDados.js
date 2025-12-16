@@ -1,60 +1,32 @@
-const container = document.querySelector('div.divDados');
-const divItems = document.querySelectorAll('.divDados .item');
+const Tag = document.querySelectorAll('button.menu-btn');
+const tagList = document.querySelectorAll('div.tagID');
 
-container.addEventListener('click', clickCallback);
+function controller() {
+    const content = this.id;
+    const div = document.querySelector(`div#Id_${content}`);
+    console.log(this)
 
-// funcoes complementares
+    Tag.forEach(btn => {
+        btn.style.background = '';
+    });
 
-function clickCallback(evento) {
-    const div = evento.target.closest('.item');
+    tagList.forEach(item => {
+        desativarDiv(item);
+    });
 
-    if (!div) return;
-
-    desativarDivs();
+    this.style.background = 'linear-gradient(to bottom, #000000ff, #383838ff)';
     ativarDiv(div);
+}
+function desativarDiv(item) {
+    item.classList.remove('d-flex');
+    item.classList.add('d-none');
 }
 
 function ativarDiv(div) {
-    if (!div) return;
-
-    const inputs = div.querySelectorAll('input');
-    const buttons = div.querySelectorAll('button');
-
-    div.classList.add('glow-border');
-
-    inputs.forEach(input => {
-        input.removeAttribute('disabled', true);
-        input.classList.remove('text-secondary');
-        input.classList.add('text-white');
-    });
-
-    buttons.forEach(button => {
-        button.removeAttribute('disabled', true);
-        button.classList.remove('text-secondary');
-        button.classList.add('text-white');
-    });
-}
-function desativarDivs() {
-
-    divItems.forEach(div => {
-        const inputs = div.querySelectorAll('input');
-        const buttons = div.querySelectorAll('button');
-
-        div.classList.remove('glow-border');
-
-        inputs.forEach(input => {
-            input.setAttribute('disabled', true);
-            input.classList.remove('text-white');
-            input.classList.add('text-secondary');
-        });
-
-        buttons.forEach(button => {
-            button.setAttribute('disabled', true);
-            button.classList.remove('text-white');
-            button.classList.add('text-secondary');
-        });
-    });
+    div.classList.remove('d-none');
+    div.classList.add('d-flex');
 }
 
-// funcoes de edicao 
-
+Tag.forEach(btn => {
+    btn.addEventListener('click', controller);
+});

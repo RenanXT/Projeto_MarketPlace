@@ -15,7 +15,7 @@
         <div class="d-flex flex-wrap gap-3 w-100 justify-content-between">
             <input class="border border-secondary bg-content w-50 rounded-3" type="text" name="" id="">
             <div class="d-flex gap-2 border  border-secondary rounded-2 bg-content p-2" style="margin-right: 20px;">
-                <button class="btn bg-DarkGray text-white glow-hover"><i class="fa-solid fa-plus"></i></button>
+                <button class="btn btnResponder bg-DarkGray text-white glow-hover"><i class="fa-solid fa-plus"></i></button>
                 <button class="btn bg-DarkGray text-white glow-hover">Todas (21)</button>
                 <button class="btn bg-DarkGray text-white glow-hover">Lidas (13)</button>
                 <button class="btn bg-DarkGray text-white glow-hover">Arquivadas (3)</button>
@@ -76,7 +76,7 @@
                 <?php endforeach;
 
             } else {
-                echo '<div class="d-flex content-center h-100 p-3"> 
+                echo '<div id="txtNaN" class="d-flex content-center h-100 p-3"> 
                     <button class="d-flex gap-2 btn">
                         <p class="text-white">Nenhuma Notificação Encontrada</p>
                         <i class="fa-solid fa-arrow-rotate-right text-white fs-4"></i>
@@ -170,12 +170,15 @@
                 <h5 class="text-white m-2 p-3 fw-bold">Tem certeza que deseja excluir essa Mensagem?</h5>
                 <textarea id="txtMsg" class="text-start m-2 p-3 w-50 bg-transparent text-white border-0"
                     style="height: 200px;" disabled>
-                    teste teste teste teste teste
                 </textarea>
                 <span class="d-flex gap-2 w-40 mt-5 p-3 m-2">
                     <button id="btnDrop" class="btn bg-DarkGray w-40 text-white glow-hover">Excluir</button>
                     <button id="btnBack" class="btn bg-DarkGray w-40 text-white glow-hover">Cancelar</button>
                 </span>
+                <button id="btnDropAlert"
+                        class="d-none postion-absolute m-auto btn bg-DarkGray text-white">Notificação excluida com
+                        sucesso!</button>
+
 
             </div>
         </div>

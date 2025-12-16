@@ -536,3 +536,24 @@ body {
 .object-cover {
     object-fit: cover;
 }
+.btn-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;       
+    height: 40px;      
+    padding: 0;        
+}
+.item {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.item label {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.item p {
+    color: white;
+}
