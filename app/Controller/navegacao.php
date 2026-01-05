@@ -23,7 +23,15 @@ if (!empty($_SESSION['usuarioSession'])) {
     $EmailUser = $_SESSION['usuarioSession']['email'];
 
     if (isset($_POST['btnResponder'])) {
-        include_once __DIR__. '/../app/model/notificacoesConsulta.php';
+        include_once __DIR__ . '/../app/model/notificacoesConsulta.php';
+    }
+    if (isset($_POST['btnAlterarSenha'])) {
+        include_once __DIR__ . '/../../app/model/AlterarSenha.php';
+        exit;
+    }
+    if (isset($_POST['btnAtualizarDados'])){
+        include_once __DIR__. '/../../app/model/editarDadosPerfil.php';
+        exit;
     }
     // BarraNav
     try {
@@ -43,7 +51,7 @@ if (!empty($_SESSION['usuarioSession'])) {
                 break;
             case 'notificacoes':
                 include_once __DIR__ . '/../../app/view/pages/notificacoes.php';
-                
+
                 break;
             // vou fazer o suporte ainda
             case 'sair':

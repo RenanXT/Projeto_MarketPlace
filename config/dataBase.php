@@ -1,8 +1,8 @@
 <?php
 
 $servername = "127.0.0.1";
-$username = "renan";
-$password = "XT645*renan";
+$username = "root";
+$password = "";
 $dbname = "projeto_marketplace";
 
 try {

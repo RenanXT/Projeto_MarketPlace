@@ -8,22 +8,22 @@
     </div>
     <div class="layout justify-content-between w-100 h-100">
         <div class="configAction gap-2 content-center bg-content border-2 border border-dark h-50 p-3 rounded-4">
-            <button class="menu-btn" id="perfil"><i class="fa-solid fa-user"></i>
+            <button class="menu-btn glow-hover" id="perfil"><i class="fa-solid fa-user"></i>
                 <p>PERFIL</p>
             </button>
-            <button class="menu-btn" id="atividade"><i class="fa-solid fa-list-check"></i>
+            <button class="menu-btn glow-hover" id="atividade"><i class="fa-solid fa-list-check"></i>
                 <p>ATIVIDADE</p>
             </button>
-            <button class="menu-btn" id="notificacao"><i class="fa-solid fa-bell"></i>
+            <button class="menu-btn glow-hover" id="notificacao"><i class="fa-solid fa-bell"></i>
                 <p>NOTIFICAÇÕES</p>
             </button>
-            <button class="menu-btn" id="pagamento"><i class="fa-solid fa-credit-card"></i>
+            <button class="menu-btn glow-hover" id="pagamento"><i class="fa-solid fa-credit-card"></i>
                 <p>PAGAMENTO</p>
             </button>
-            <button class="menu-btn" id="seguranca"><i class="fa-solid fa-lock"></i>
+            <button class="menu-btn glow-hover" id="seguranca"><i class="fa-solid fa-lock"></i>
                 <p>SEGURANÇA</p>
             </button>
-            <button class="menu-btn" id="tema"><i class="fa-solid fa-palette"></i>
+            <button class="menu-btn glow-hover" id="tema"><i class="fa-solid fa-palette"></i>
                 <p>TEMA</p>
             </button>
         </div>
@@ -57,8 +57,9 @@
                 <?php include_once __DIR__ . '/../pages/perfil-Seguranca.php'?> 
 
             </div>
-            <script src="../public/js/perfil-Perfil.js"></script>
             <script src="../public/js/perfil-editarDados.js"></script>
+            <script src="../public/js/editarPerfil.js"></script>
+            <script src="../public/js/seguranca-alterarSenha.js"></script>
 
 
 

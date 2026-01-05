@@ -1,4 +1,5 @@
-const Tag = document.querySelectorAll('button.menu-btn');
+try {
+    const Tag = document.querySelectorAll('button.menu-btn');
 const tagList = document.querySelectorAll('div.tagID');
 
 function controller() {
@@ -30,3 +31,7 @@ function ativarDiv(div) {
 Tag.forEach(btn => {
     btn.addEventListener('click', controller);
 });
+
+} catch (error) {
+    console.log('[ERRO] editarDados.js ->> ', error);
+}
