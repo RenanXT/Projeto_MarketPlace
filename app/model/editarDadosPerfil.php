@@ -11,10 +11,10 @@ try {
 
 
     //  $Post dos endereços =>
-    $End0 = $_POST['rua'] ?? '';
-    $End1 = $_POST['numero'] ?? '';
-    $End2 = $_POST['bairro'] ?? '';
-    $End3 = $_POST['cidade'] ?? '';
+    $End0 = $_POST['rua'] ?? null;
+    $End1 = $_POST['numero'] ?? null;
+    $End2 = $_POST['bairro'] ?? null;
+    $End3 = $_POST['cidade'] ?? null;
 
     if ($End0 == null) {
         $stmt = "UPDATE usuario SET 
@@ -35,25 +35,26 @@ try {
         }
     } else {
 
-        // mas voce ta editando o endereço de onde criatura !?
-        // voce nem passou o id do endereco e nem imprimiu ele na tela 
-        // ali so tem texto bicho burro
-        $stmt = "UPDATE endereco SET 
-        `id_usuario`= :id,`id_loja`= NULL, `cidade`=':cidade',
-        `bairro`=':bairro',`rua`=':rua',`numero`=':numero',
-        `logradouro`='' 
-        WHERE 1 id_usuario = :id";
-        $stmt = $conexao->prepare($stmt);
-        $stmt->bindParam(':id', $ID, PDO::PARAM_INT);
-        $stmt->bindParam(':rua', $End0, PDO::PARAM_STR);
-        $stmt->bindParam(':numero', $End1, PDO::PARAM_STR);
-        $stmt->bindParam(':bairro', $End2, PDO::PARAM_STR);
-        $stmt->bindParam(':cidade', $End3, PDO::PARAM_STR);
+        $stmt2 = "UPDATE endereco 
+                  SET  cidade = :cidade, bairro = :bairro, rua = :rua,
+                  numero = :numero, logradouro = ''
+                  WHERE id_usuario = :id";
 
-       if ($stmt->execute()) {
+        $stmt2 = $conexao->prepare($stmt2);
+        $stmt2->bindParam(':id', $ID, PDO::PARAM_INT);
+        $stmt2->bindParam(':rua', $End0, PDO::PARAM_STR);
+        $stmt2->bindParam(':numero', $End1, PDO::PARAM_INT);
+        $stmt2->bindParam(':bairro', $End2, PDO::PARAM_STR);
+        $stmt2->bindParam(':cidade', $End3, PDO::PARAM_STR);
+
+        $stmt2->execute();
+
+        if ($stmt2->execute()) {
             echo 'editou o endereco';
+            // boas novas, isso funciona mas o valor de endereco ta salvo na session.
+            // nao vai mudar ate que o usuario refaça o login
         }
-        
+
     }
 
 
