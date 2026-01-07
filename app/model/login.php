@@ -22,7 +22,13 @@ try {
             'usuario' => $dados[0]['usuario'],
             'banner' => $dados[0]['banner'],
             'pontuacao' => $dados[0]['pontuacao'],
-            'conexao' => $dados[0]['conexao']
+            'conexao' => $dados[0]['conexao'],
+            'id_endereco' => $dados[0]['id_endereco'],
+            'cidade' => $dados[0]['cidade'],
+            'bairro' => $dados[0]['bairro'],
+            'rua' => $dados[0]['rua'],
+            'numero' => $dados[0]['numero'],
+            'logradouro' => $dados[0]['logradouro']
         ];
         header("Location: index.php?pagina=inicio");
         exit;

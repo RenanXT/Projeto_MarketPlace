@@ -16,7 +16,7 @@ try {
     $End2 = $_POST['bairro'] ?? '';
     $End3 = $_POST['cidade'] ?? '';
 
-    if ($End1 == null && $End2 == null) {
+    if ($End0 == null) {
         $stmt = "UPDATE usuario SET 
         nome = '" . $Nome . "',
         sobrenome = '" . $Sobrenome . "',
@@ -35,7 +35,7 @@ try {
         }
     } else {
 
-        // mas voce ta editando o endereço de oinde criatura !?
+        // mas voce ta editando o endereço de onde criatura !?
         // voce nem passou o id do endereco e nem imprimiu ele na tela 
         // ali so tem texto bicho burro
         $stmt = "UPDATE endereco SET 
@@ -51,7 +51,7 @@ try {
         $stmt->bindParam(':cidade', $End3, PDO::PARAM_STR);
 
        if ($stmt->execute()) {
-            echo 'funcionou';
+            echo 'editou o endereco';
         }
         
     }

@@ -41,13 +41,13 @@
     <h2 class="text-white fw-bold mb-3 border-white border-bottom p-2">ENDEREÇOS</h2>
 
     <div class="item d-flex flex-column w-90 p-5 gap-3 m-2 bg-content border border-dark rounded-3">
-        <form class="FormId" action="" method="POST">
+        <form class="FormId d-flex flex-column gap-3" action="" method="POST">
             <input type="text" id="txtEnd1"
                 class="form-control border border-secondary bg-transparent text-secondary fw-bold w-40"
-                value="Coronel Pedro Marcondes, 34 - Flamboyant" disabled>
+                value="<?php echo $endereco = $endRua, ', ', $endBairro, ' - ', $endCidade; ?>" disabled>
             <input type="text" id="txtEnd2"
                 class="form-control border border-secondary bg-transparent text-secondary fw-bold w-40"
-                value="Coronel Pedro Marcondes, 34 - Flamboyant" disabled>
+                value="" disabled>
             <span class="d-flex gap-2 mt-2">
                 <button id="AdicionarEnd" class="btnAtualizarDados btn bg-DarkGray text-secondary fw-bold glow-hover" type="button"
                     disabled>+</button>
@@ -55,5 +55,6 @@
                     disabled>Editar</button>
             </span>
         </form>
+        <!-- faz um foreach nos enderecos depois so mantem o id com um padrao txtEnd(contador) -->
     </div>
 </div>

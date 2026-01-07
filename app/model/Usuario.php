@@ -72,7 +72,10 @@ class Usuario
     public function ConsultarUsuario($u, $s)
     {
         try {
-            $sql = "SELECT * FROM usuario WHERE usuario = :usuario";
+            $sql = "SELECT * FROM usuario AS u
+            INNER JOIN endereco AS e
+            ON e.id_usuario = u.id_usuario
+            WHERE usuario = :usuario";
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindParam(':usuario', $u, PDO::PARAM_STR);
             $stmt->execute();

@@ -21,6 +21,10 @@ if (!empty($_SESSION['usuarioSession'])) {
     $ID = $_SESSION['usuarioSession']['id_usuario'];
     $NomeUser = $_SESSION['usuarioSession']['nome_social'];
     $EmailUser = $_SESSION['usuarioSession']['email'];
+    $endRua = $_SESSION['usuarioSession']['rua'];
+    $endNumero = $_SESSION['usuarioSession']['numero'];
+    $endBairro = $_SESSION['usuarioSession']['bairro'];
+    $endCidade = $_SESSION['usuarioSession']['cidade'];
 
     if (isset($_POST['btnResponder'])) {
         include_once __DIR__ . '/../app/model/notificacoesConsulta.php';

@@ -62,6 +62,12 @@ function ativarDiv(input, button, box) {
         // guardei o valor antigo do input logo quando ativa a div
         inp.dataset.oldValue = inp.value;
     })
+    const valores = [];
+
+    input.forEach(i => {
+        valores.push(i.dataset.oldValue);
+    });
+
 }
 
 function desativarDivs(div) {
@@ -124,33 +130,37 @@ function editarEndereco(input) {
             // criei separadores na string e transformei em obj
             const partes = i.value.split(/[,-]/).map(p => p.trim());
             const endereco = {
+                btnAtualizarDados: true,
                 rua: partes[0],
                 numero: partes[1],
                 bairro: partes[2],
                 cidade: partes[3]
             };
             console.log(endereco)
+
+            $.ajax({
+                method: "POST",
+                url: "?pagina=perfil",
+                data: endereco,
+                success: function (response) {
+                    console.log(response)
+                    const Sucesso = document.querySelector('div#successID');
+                    Sucesso.classList.remove('d-none');
+                    Sucesso.classList.add('d-flex');
+                    setTimeout(() => {
+                        Sucesso.classList.remove('d-flex');
+                        Sucesso.classList.add('d-none');
+                    }, 2000)
+                }
+            })
         }
-        $.ajax({
-            method: "POST",
-            url: "?pagina=perfil",
-            data: endereco,
-            success: function (response) {
-                const Sucesso = document.querySelector('div#successID');
-                Sucesso.classList.remove('d-none');
-                Sucesso.classList.add('d-flex');
-                setTimeout(() => {
-                    Sucesso.classList.remove('d-flex');
-                    Sucesso.classList.add('d-none');
-                }, 2000)
-            }
-        })
     });
 
 
 }
 
-function adicionarEndereco(input) {
-
+function adicionarEndereco(valores) {
+    if (valores.lenght < 2) {
+        // executa o insert
+    }
 }
-
