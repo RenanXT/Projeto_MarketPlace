@@ -21,10 +21,8 @@ if (!empty($_SESSION['usuarioSession'])) {
     $ID = $_SESSION['usuarioSession']['id_usuario'];
     $NomeUser = $_SESSION['usuarioSession']['nome_social'];
     $EmailUser = $_SESSION['usuarioSession']['email'];
-    $endRua = $_SESSION['usuarioSession']['rua'];
-    $endNumero = $_SESSION['usuarioSession']['numero'];
-    $endBairro = $_SESSION['usuarioSession']['bairro'];
-    $endCidade = $_SESSION['usuarioSession']['cidade'];
+    
+    $Enderecos = $Usuario['enderecos'];
 
     if (isset($_POST['btnResponder'])) {
         include_once __DIR__ . '/../app/model/notificacoesConsulta.php';
@@ -33,8 +31,8 @@ if (!empty($_SESSION['usuarioSession'])) {
         include_once __DIR__ . '/../../app/model/AlterarSenha.php';
         exit;
     }
-    if (isset($_POST['btnAtualizarDados'])){
-        include_once __DIR__. '/../../app/model/editarDadosPerfil.php';
+    if (isset($_POST['btnAtualizarDados'])) {
+        include_once __DIR__ . '/../../app/model/editarDadosPerfil.php';
         exit;
     }
     // BarraNav

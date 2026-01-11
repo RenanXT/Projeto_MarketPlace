@@ -71,7 +71,7 @@ function ativarDiv(input, button, box) {
 }
 
 function desativarDivs(div) {
-    // nao sei porque mas nao consigo passar button e input como parametro 
+    // nao sei porque mas nao consigo passar button e input como parametro,
     // entao tive que repetir o querySelector
     div.forEach(box => {
         box.classList.remove('glow-hover');
@@ -101,7 +101,8 @@ function atualizarDados(input) {
     input.forEach(inp => {
         Dados[inp.id] = inp.value;
     });
-
+   
+    console.log(Dados);
 
     $.ajax({
         method: "POST",
@@ -128,13 +129,14 @@ function editarEndereco(input) {
         // comparei os valores atuais com os antigos
         if (i.value !== i.dataset.oldValue) {
             // criei separadores na string e transformei em obj
-            const partes = i.value.split(/[,-]/).map(p => p.trim());
+            const partes = i.value.split(/\s*[,\-\/!]\s*/).map(p => p.trim());
             const endereco = {
                 btnAtualizarDados: true,
                 rua: partes[0],
                 numero: partes[1],
                 bairro: partes[2],
-                cidade: partes[3]
+                cidade: partes[3],
+                id_endereco: partes[4]
             };
             console.log(endereco)
 
@@ -153,6 +155,7 @@ function editarEndereco(input) {
                     }, 2000)
                 }
             })
+            
         }
     });
 
@@ -160,7 +163,5 @@ function editarEndereco(input) {
 }
 
 function adicionarEndereco(valores) {
-    if (valores.lenght < 2) {
-        // executa o insert
-    }
+  
 }

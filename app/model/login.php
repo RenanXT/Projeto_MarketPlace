@@ -23,13 +23,19 @@ try {
             'banner' => $dados[0]['banner'],
             'pontuacao' => $dados[0]['pontuacao'],
             'conexao' => $dados[0]['conexao'],
-            'id_endereco' => $dados[0]['id_endereco'],
-            'cidade' => $dados[0]['cidade'],
-            'bairro' => $dados[0]['bairro'],
-            'rua' => $dados[0]['rua'],
-            'numero' => $dados[0]['numero'],
-            'logradouro' => $dados[0]['logradouro']
         ];
+        $_SESSION['usuarioSession']['enderecos'] = [];
+
+        foreach ($dados as $linha) {
+            $_SESSION['usuarioSession']['enderecos'][] = [
+                'id_endereco' => $linha['id_endereco'],
+                'rua' => $linha['rua'],
+                'numero' => $linha['numero'],
+                'bairro' => $linha['bairro'],
+                'cidade' => $linha['cidade'],
+                'logradouro' => $linha['logradouro']
+            ];
+        }
         header("Location: index.php?pagina=inicio");
         exit;
     } else {
