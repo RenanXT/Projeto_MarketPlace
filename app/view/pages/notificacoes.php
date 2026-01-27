@@ -34,6 +34,13 @@
                 foreach ($dados as $notificacoes):
 
                     $id = $notificacoes['id_notificacao'];
+                    $status = $notificacoes['estado'];
+                    if ($status == 'lida'){
+                        $visibilidade = 'd-flex';
+                    }
+                    else {
+                        $visibilidade = 'd-none';
+                    }
                     ?>
 
                     <form id="form_<?= $id ?>"
@@ -41,8 +48,8 @@
 
                         <span class="d-flex gap-2">
 
-                            <button id="btnStatus_<?= $id ?>" type="button" class="btn border-secondary glow-hover">
-                                <i class="fa-solid fa-check text-white fw-bold p-2"></i>
+                            <button id="btnStatus_<?= $id ?>" type="button" class="btnLida btn border-secondary glow-hover">
+                                <i class="<?php echo  $visibilidade?> fa-solid fa-check text-white fw-bold p-2"></i>
                             </button>
 
                             <button id="btnData_<?= $id ?>" type="button" class="btnData d-flex content-center gap-2 btn">
@@ -57,7 +64,7 @@
 
                         <span class="d-flex gap-4">
 
-                            <button id="btnArquivar_<?= $id ?>" type="button" class="btn">
+                            <button id="btnStatus_<?= $id ?>" type="button" class="btn">
                                 <i class="fa-solid fa-folder fs-3 text-white"></i>
                             </button>
 
@@ -91,7 +98,7 @@
 
                 </h3>
                 <div class="d-flex flex-row justify-content-start w-90 gap-2 p-2">
-                    <button type="button" id="btnVoltar" class="btn"><i
+                    <button type="button" class="btn Voltar Detalhes"><i
                             class="fa-solid fa-arrow-left text-white fs-3"></i></button>
                     <button type="button" name="btnResponder" class="btn btnResponder fs"><i
                             class="fa-solid fa-paper-plane text-white fs-3"></i></button>
@@ -116,7 +123,7 @@
 
             <div id="divResp" class="d-none flex-column w-90 h-90">
                 <span class="d-flex align-items-center gap-2 mb-3">
-                    <button id="btnvoltarLista" class="btn" style="max-width:10%; min-width:5%">
+                    <button class="btn Voltar Responder" style="max-width:10%; min-width:5%">
                         <i class="fa-solid fa-arrow-left text-white fs-3"></i></button>
                     </button>
                     <h3 class="fw-bold text-white mt-auto">RESPONDER NOTIFICACÃO</h3>
@@ -163,7 +170,7 @@
 
             <div id="divExcluir" class="d-none flex-column w-90 gap-2 p-2">
                 <span class="d-flex gap-2 p-3">
-                    <button type="button" id="btnVoltar" class="btn"><i
+                    <button type="button" class="btn Voltar Excluir"><i
                             class="fa-solid fa-arrow-left text-white fs-3"></i></button>
                     <p id="txtAssunto" class="w-75 m-2 p-2 text-white fs-3 fw-bold text-uppercase border-2 border-bottom"></p>
                 </span>
@@ -173,7 +180,7 @@
                 </textarea>
                 <span class="d-flex gap-2 w-40 mt-5 p-3 m-2">
                     <button id="btnDrop" class="btn bg-DarkGray w-40 text-white glow-hover">Excluir</button>
-                    <button id="btnBack" class="btn bg-DarkGray w-40 text-white glow-hover">Cancelar</button>
+                    <button id="btnBack" class="btn Voltar Excluir bg-DarkGray w-40 text-white glow-hover">Cancelar</button>
                 </span>
                 <button id="btnDropAlert"
                         class="d-none postion-absolute m-auto btn bg-DarkGray text-white">Notificação excluida com
@@ -184,6 +191,7 @@
         </div>
         <script src="../public/js/detalhes-notificacao.js"></script>
         <script src="../public/js/excluir-notificacao.js"></script>
+        <script src="../public/js/notificacao-AlterarVisibilidade.js"></script>
 
     </div>
 

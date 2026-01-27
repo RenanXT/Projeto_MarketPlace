@@ -81,6 +81,7 @@ class Usuario
             $stmt->execute();
             $dados = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($dados && password_verify($s, $dados[0]['senha'])) {
+                var_dump($dados['senha'][0]);
                 return $dados;
             } else {
                 return [];

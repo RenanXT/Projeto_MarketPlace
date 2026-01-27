@@ -2,10 +2,14 @@ try {
     const forms = document.querySelectorAll('form[id^="form_"]') ?? '';
     const detalhes = document.querySelector('div#txtDetalhes');
     const respBox = document.querySelector('div#divResp');
+    const Excluir = document.querySelector('div#divExcluir');
     const btnResp = document.querySelectorAll('button.btnResponder');
+    const voltar = document.querySelectorAll('button.Voltar');
 
     if (forms.length > 0) {
         forms.forEach(form => {
+            // só por questões de conceito: substitui 'form_' por uma string vazia, o resto do texto se mantém
+            // ou seja, o id!
             const id = form.id.replace('form_', '');
             const btn = form.querySelector(`button#btnData_${id}`);
             btn.addEventListener('click', ativarDiv);
@@ -40,8 +44,6 @@ try {
                 document.querySelector('p#txtMsg').textContent = Dados.mensagem;
 
 
-
-
                 btnResp.forEach(btn => {
 
 
@@ -64,6 +66,8 @@ try {
                         btnEnviar.addEventListener('click', () => {
                             $.ajax(({
 
+                                // aqui voce quebra a regra do controller, onde é ele que 
+                                // gerencia a navegacao das paginas, mas é facil de arrumar
                                 url: '/../Projeto_MarketPlace/app/model/EnviarNotificacao.php',
                                 method: 'POST',
                                 data: Mensagem = {
@@ -101,7 +105,7 @@ try {
     }
     else {
         const emptyList = document.querySelector('#txtNaN');
-        
+
         btnResp.forEach(btn => {
             btn.addEventListener('click', () => {
 
@@ -113,7 +117,35 @@ try {
 
             })
         })
+    }
 
+    voltar.forEach(btnVoltar => {
+        btnVoltar.addEventListener('click', desativarDiv);
+    })
+    // o GPT disse que voce pode usar data-target(HTML) pra nao ter essa repeticao
+
+    function desativarDiv(event) {
+        const btn = event.target.closest('button');
+        if (!btn) return;
+
+        if (btn.classList.contains('Detalhes')) {
+            detalhes.classList.remove('d-flex');
+            detalhes.classList.add('d-none');
+        }
+        else if (btn.classList.contains('Responder')) {
+            respBox.classList.remove('d-flex');
+            respBox.classList.add('d-none');
+        }
+        else if (btn.classList.contains('Excluir')) {
+            Excluir.classList.remove('d-flex');
+            Excluir.classList.add('d-none');
+        }
+
+        forms.forEach(list => {
+            list.classList.remove('d-none', 'h-0');
+            list.classList.add('d-flex');
+            list.style.opacity = '1';
+        });
     }
 } catch (error) {
     console.log('erro 3434 ->', error);

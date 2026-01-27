@@ -1,6 +1,13 @@
 <?php include_once __DIR__ . '/../layouts/html_header.php'; ?>
 <?php include_once __DIR__ . '/../layouts/BarraNav.php'; ?>
 
+<!-- obs pra pegar altura de imagens de acordo com a IA:
+ $info = getimagesize($_FILES['imagem']['tmp_name']);
+
+if ($info !== false) {
+    $altura = $info[1];
+}  -->
+
 <div id="Content" class="d-flex flex-column w-100 p-1 overflow-auto">
 
     <div class="d-flex gap-2 w-100 h-100 overflow-hidden">

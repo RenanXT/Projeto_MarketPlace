@@ -55,9 +55,9 @@ try {
 
             // boas novas, isso funciona mas, o valor de endereco ta salvo na session.
             // nao vai mudar ate que o usuario refaça o login
-            // e nao menos importante essa parte depende completamente da forma 
+            // e nao menos importante, essa parte depende completamente da forma 
             // como o usuario vai digitar o input, 
-            // mas é provisorio depois faço uma especie de automacao pra a entrada do usuario
+            // mas é provisorio depois faço uma especie de automação pra a entrada do usuario
         }
 
     }
