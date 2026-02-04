@@ -28,11 +28,11 @@ function alterarVisibilidade(btn, id) {
     if (icone.classList.contains('d-none') && icone.classList.contains('fa-check')) {
         icone.classList.remove('d-none');
         icone.classList.add('d-flex');
-        status = 'lida';
+        status = 'Lidas';
     }
     
     else if (icone.classList.contains('fa-folder')) {
-        status = 'arquivada';
+        status = 'Arquivadas';
         
     } else {
         icone.classList.remove('d-flex');

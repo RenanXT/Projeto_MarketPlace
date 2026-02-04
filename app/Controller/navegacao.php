@@ -23,7 +23,7 @@ if (!empty($_SESSION['usuarioSession'])) {
     $EmailUser = $_SESSION['usuarioSession']['email'];
 
     $Enderecos = $Usuario['enderecos'];
-
+    
     if (isset($_POST['btnResponder'])) {
         include_once __DIR__ . '/../app/model/notificacoesConsulta.php';
     }

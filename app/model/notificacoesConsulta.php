@@ -1,4 +1,7 @@
 <?php
+
+$value = $_POST['value'] ?? '';
+var_dump($value);
 $notificacao = '' ?? '';
 $tipo = '';
 try {

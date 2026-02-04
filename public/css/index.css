@@ -551,6 +551,7 @@ body {
 }
 .item label {
     color: white;
+    color: rgb(148, 11, 11);
     font-weight: bold;
     text-transform: uppercase;
 }

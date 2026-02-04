@@ -14,14 +14,17 @@
         </div>
         <div class="d-flex flex-wrap gap-3 w-100 justify-content-between">
             <input class="border border-secondary bg-content w-50 rounded-3" type="text" name="" id="">
-            <div class="d-flex gap-2 border  border-secondary rounded-2 bg-content p-2" style="margin-right: 20px;">
+            <div id="txtConsulta" class="d-flex gap-2 border border-secondary rounded-2 bg-content p-2" style="margin-right: 20px;">
                 <button class="btn btnResponder bg-DarkGray text-white glow-hover"><i class="fa-solid fa-plus"></i></button>
-                <button class="btn bg-DarkGray text-white glow-hover">Todas (21)</button>
-                <button class="btn bg-DarkGray text-white glow-hover">Lidas (13)</button>
-                <button class="btn bg-DarkGray text-white glow-hover">Arquivadas (3)</button>
+                <button class="btn bg-DarkGray text-white glow-hover">Todas</button>
+                <button class="btn bg-DarkGray text-white glow-hover">Lidas</button>
+                <button class="btn bg-DarkGray text-white glow-hover">Arquivadas</button>
             </div>
         </div>
 
+<!-- tem que fazer o ajax pra caso aperte em algum botao de consulta -->
+ <!-- pelo que eu vi vou ter que tirar essa consulta daqui e colocar ela por 
+  ajax la pela parte da barra de navegacao do site quando o usuario clica em notificacoes -->
         <?php include_once __DIR__ . '/../../model/notificacoesConsulta.php'; ?>
         <?php $conexao; ?>
 
@@ -192,6 +195,8 @@
         <script src="../public/js/detalhes-notificacao.js"></script>
         <script src="../public/js/excluir-notificacao.js"></script>
         <script src="../public/js/notificacao-AlterarVisibilidade.js"></script>
+        <script src="../public/js/consultar-notificacao.js"></script>
+
 
     </div>
 
