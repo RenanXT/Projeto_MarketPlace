@@ -27,6 +27,7 @@ button.forEach(button => {
                     detalhes.classList.add('visivel')
                     detalhes.style.opacity = 1;
                 }, 100);
+                console.log(produto)
 
                 const img = detalhes.querySelector('img#imgProd');
                 const caracteristicas = detalhes.querySelector('p#txtCaract');
@@ -38,6 +39,10 @@ button.forEach(button => {
 
                 preco.textContent = `R$ ${produto.preco}`;
                 descricao.textContent = produto.descricao;
+
+                // preparando o value para utilizar o id no adicionarOpiniao.js 
+                const txtProduto = document.querySelector('input#txtProduto');
+                txtProduto.value = produto.id_produto
             }
         });
     });

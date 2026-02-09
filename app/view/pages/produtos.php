@@ -7,27 +7,27 @@
         <form name="txtFiltro" action="" method="POST"
             class="d-flex flex-column w-25 h-75 p-5 gap-3 bg-content border border-dark rounded-4 border-dark">
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn bg-DarkGray text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn bg-DarkGray text-start menu-btn glow-hover">
                 Todos os Produtos <p>(156)</p>
             </button>
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
                 Eletrônicos <p>(156)</p>
             </button>
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
                 Gaming <p>(156)</p>
             </button>
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
                 Moda <p>(156)</p>
             </button>
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
                 Casa & Decoração <p>(156)</p>
             </button>
             <button type="submit" name="btnFiltro"
-                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn">
+                class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
                 Esportes <p>(156)</p>
             </button>
 
@@ -107,17 +107,25 @@
                         <button class="text-white fw-bold btn bg-DarkGray m-2 glow-hover">
                             Adicionar ao Carrinho
                         </button>
-                        <?php include_once __DIR__ . '/../../model/opiniaoProduto.php'; ?>
-                        
+
                         <div class="d-flex flex-column gap-2 p-3 mt-3 w-100 bg-content border border-dark rounded-3">
                             <p class="text-white fw-bold fs-4">
                                 OPINIÕES DE OUTROS USUARIOS
                             </p>
 
                             <button id="btnOpiniao"
-                                class="btn bg-DarkGray text-white fw-bold p-2 mb-2 glow-hover">Avaliar Produto</button>
+                                class="ativo btn bg-DarkGray text-white fw-bold p-2 mb-2 glow-hover">Avaliar
+                                Produto</button>
+                            <input type="hidden" id="txtProduto" value="">
+                           <div class="d-none flex-column" id="txtOpiniao">
+                             <textarea class="d-flex form-control bg-transparent border-dark text-white"
+                                style=" height: 250px;"></textarea>
+                            <button id="enviarBtn" class="d-flex text-start btn fw-bold text-white fw-bold">
+                                Enviar <i class="text-white fa-solid fa-share"></i>
+                            </button>
+                           </div>
 
-                            <div class="d-flex flex-column gap-2">
+                            <div id="txtBloco" class="d-flex flex-column gap-2">
                                 <div class="rounded-3 bg-content border border-dark p-3 w-90 text-white">
                                     Visualmente linda, e o som é tão versátil que consigo usar do rock ao jazz.
                                     A alavanca responde super bem também.

@@ -23,7 +23,7 @@ if (!empty($_SESSION['usuarioSession'])) {
     $EmailUser = $_SESSION['usuarioSession']['email'];
 
     $Enderecos = $Usuario['enderecos'];
-    
+
     if (isset($_POST['btnResponder'])) {
         include_once __DIR__ . '/../app/model/notificacoesConsulta.php';
     }
@@ -39,8 +39,12 @@ if (!empty($_SESSION['usuarioSession'])) {
         include_once __DIR__ . '/../../app/model/adicionarEndereco.php';
         exit;
     }
-    if (isset($_POST['btnAlterarStatus'])){
-          include_once __DIR__ . '/../../app/model/AlterarVisibilidade.php';
+    if (isset($_POST['btnAlterarStatus'])) {
+        include_once __DIR__ . '/../../app/model/AlterarVisibilidade.php';
+    }
+    if (isset($_POST['btnEnviarOpiniao'])) {
+        include_once __DIR__ . '/../../app/model/opiniaoProduto.php';
+        exit;
     }
     // BarraNav
     try {
