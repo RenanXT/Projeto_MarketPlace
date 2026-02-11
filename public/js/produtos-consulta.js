@@ -60,6 +60,8 @@ try {
                  
                 a solucao proposta por ele foi criar um arquivo separado para a consulta por ajax
                 mas isso ta bugando minha cabeça demais, nao sei fazer isso ainda
+                
+                ATT: retona resultado sim mas so em casos que tem registro no Bd
                 */
             }
         });
