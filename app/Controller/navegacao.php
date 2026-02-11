@@ -24,6 +24,12 @@ if (!empty($_SESSION['usuarioSession'])) {
 
     $Enderecos = $Usuario['enderecos'];
 
+    if (isset($_POST['btnConsultarProdutos'])) {
+        var_dump($_POST);
+        include_once __DIR__ . '/../../app/model/produtosLista.php';
+        exit;
+    }
+
     if (isset($_POST['btnResponder'])) {
         include_once __DIR__ . '/../app/model/notificacoesConsulta.php';
     }

@@ -8,31 +8,31 @@
             class="d-flex flex-column w-25 h-75 p-5 gap-3 bg-content border border-dark rounded-4 border-dark">
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn bg-DarkGray text-start menu-btn glow-hover">
-                Todos os Produtos
+                Todos os Produtos <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Eletrônicos
+                Eletrônicos <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Gaming
+                Gaming <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Moda
+                Moda <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Casa & Decoração
+                Casa & Decoração <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Esportes
+                Esportes <p>(156)</p>
             </button>
             <button type="button" name="btnFiltro"
                 class="d-flex justify-content-between text-white fw-bold btn text-start menu-btn glow-hover">
-                Instrumentos Musicais
+                Instrumentos Musicais <p>(156)</p>
             </button>
 
             <p class="text-white fw-bold">Faixa de Preço</p>
@@ -63,17 +63,19 @@
                 <form method="POST" id="txtForm"
                     class="d-flex flex-row flex-wrap gap-1 rounded-2 border-dark position-relative">
                     
+
+                    <?php foreach ($produtos as $lista): ?>
                         <div id="txtCard" class="card-produto bg-content glow-hover text-white p-1">
-                            <img class="card-img" src="" alt="">
+                            <img class="card-img" src="<?= $lista['caminho_arquivo'] ?>" alt="">
                             <button type="button" class="btnEnviar btn text-white h-40">
                                 <span class="text-center w-100 h-50">
-                                    <p></p>
-                                    <p>R$ </p>
+                                    <p><?= limitarPalavras($lista['nome'], 3) ?></p>
+                                    <p>R$ <?= $lista['preco'] ?></p>
                                 </span>
                             </button>
-                            <input type="hidden" name="DataProd" value=''>
+                            <input type="hidden" name="DataProd" value='<?= json_encode($lista) ?>'>
                         </div>
-                   
+                    <?php endforeach; ?>
                 </form>
 
                 <div id="detalhesId" class="d-flex flex-row w-100 position-relative">
@@ -86,7 +88,9 @@
                     <div class="d-flex flex-column gap-2" style=" width: 70%;">
                         <span class="d-flex w-100">
                             <div class="d-flex justify-content-between mt-5 flex-column w-10 m-4">
-                                    <img class="glow-hover" id="ImgAlt" src="" alt="erro">
+                                <?php foreach ($ImgAlt as $Alt): ?>
+                                    <img class="glow-hover" id="ImgAlt" src="<?= $Alt['caminho_arquivo'] ?>" alt="erro">
+                                <?php endforeach; ?>
                             </div>
 
                             <img id="imgProd" class="w-75 object-fit-contain" src="" alt="imagem nao encontrada">
@@ -169,3 +173,12 @@
 </body>
 
 </html>
+
+<!-- INSERT INTO `imagem_produto`(`id_arquivo`, `id_produto`, `nome_arquivo`, `tipo_arquivo`, `caminho_arquivo`, `tamanho_arquivo`)
+VALUES 
+('',
+ '',
+ '',
+ '',
+  '/Projeto_MarketPlace/public/img/',
+ ''); -->

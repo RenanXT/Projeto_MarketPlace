@@ -1,46 +1,37 @@
 <?php
 try {
-    $sql = 'SELECT 
-            P.*, 
-            I.caminho_arquivo, 
-            O.avaliacao 
-        FROM produto AS P
-        LEFT JOIN imagem_produto AS I 
-            ON I.id_arquivo = (
-                SELECT id_arquivo
-                FROM imagem_produto
-                WHERE id_produto = P.id_produto
-                ORDER BY id_arquivo ASC
-                LIMIT 1
-            )
-        LEFT JOIN opiniaoproduto AS O 
-            ON P.id_produto = O.id_produto
-        GROUP BY P.id_produto ASC';
 
-    $stmt = $conexao->prepare($sql);
-    if ($stmt->execute()) {
-        $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $filtro = $_POST['filtro'] ?? null;
 
-        $sqlAlt = 'SELECT I.caminho_arquivo
-                   FROM imagem_produto AS I
-                   INNER JOIN produto AS P
-                   WHERE I.id_produto = P.id_produto';
-                   $stmt = $conexao->prepare($sqlAlt);
-                   if ($stmt->execute()) {
-                    $ImgAlt = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                   }
+    $sql = 'SELECT p.*,
+            c.tipo,
+            i.caminho_arquivo,
+            o.texto_opiniao
+        FROM produto p
+        INNER JOIN categoria c 
+            ON c.id_categoria = p.id_categoria
+        INNER JOIN imagem_produto i 
+            ON i.id_produto = p.id_produto
+        LEFT JOIN opiniaoproduto o 
+            ON o.id_produto = p.id_produto
+    ';
+    // .= faz com que caso o filtro tiver valor,
+    //  adiciona o texto no final de $sql!
+    if (!empty($filtro)) {
+        $sql .= " WHERE c.tipo = :filtro";
     }
+    $stmt = $conexao->prepare($sql);
+    if (!empty($filtro)) {
+        $stmt->bindParam(':filtro', $filtro, PDO::PARAM_STR);
+    }
+    $stmt->execute();
+    $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    echo json_encode($produtos);
+    exit;
+
+
 } catch (PDOException $e) {
-    echo '[ERRO] erro consulta -> ' . $e;
+    echo '[ERRO] erro consulta -> ' . $e->getMessage();
 }
-
-
 ?>
-<!-- INSERT INTO `imagem_produto`(`id_arquivo`, `id_produto`, `nome_arquivo`, `tipo_arquivo`, `caminho_arquivo`, `tamanho_arquivo`)
-VALUES 
-('',
- '',
- '',
- '',
-  '/Projeto_MarketPlace/public/img/',
- ''); -->
