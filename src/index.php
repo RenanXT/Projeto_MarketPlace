@@ -1,5 +1,7 @@
-<?php include_once __DIR__ .'/../app/view/layouts/html_header.php';?>
+<?php include_once __DIR__ . '/../app/Controller/navegacao.php'; ?>
+
 <body>
-<?php include_once __DIR__ .'/../app/Controller/navegacao.php';?>
+    <?php include_once __DIR__ . '/../app/view/layouts/html_header.php'; ?>
 </body>
+
 </html>

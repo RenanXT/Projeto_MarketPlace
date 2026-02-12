@@ -1,29 +1,26 @@
 try {
     document.addEventListener('DOMContentLoaded', () => {
         controller();
-        console.log('DOM carregado, controller iniciado.');
     });
 
     function controller() {
         const btnFiltro = document.querySelectorAll('button[name=btnFiltro]');
-        let filtro = '';
 
+        ConsultarProdutos('');
 
         btnFiltro.forEach(btn => {
+            btn.addEventListener('click', () => {
 
-            if (btn.textContent === 'Todos os Produtos') {
-                filtro = '';
+                let filtro = btn.textContent.trim();
+
+                if (filtro === 'Todos os Produtos') {
+                    filtro = '';
+                }
+
+                console.log('Botão clicado:', filtro);
                 ConsultarProdutos(filtro);
-            }
-            else {
-
-                btn.addEventListener('click', () => {
-                    console.log('Botão clicado: ', btn.textContent);
-                    filtro = btn.textContent.trim();
-                    ConsultarProdutos(filtro);
-                })
-            }
-        })
+            });
+        });
     }
 
 
@@ -37,33 +34,46 @@ try {
             data: Dados,
             dataType: "json",
             success: function (response) {
-                const dados = JSON.parse(response);
 
-                console.log('dados:', dados);
-                const card = document.querySelector('#txtCard');
+                console.log('Resposta do servidor:', response);
+
+                const form = document.querySelector('#txtForm');
+                const modelo = document.querySelector('#txtCard');
+                
+                form.innerHTML = '';
+
+                for (let i = 0; i < response.length; i++) {
+                    const produtos = modelo.cloneNode(true);
+                    produtos.classList.remove('d-none');
+                    console.log(produtos);
+                    
+                    form.appendChild(produtos);
+
+                    const img = produtos.querySelector('.card-img');
+                    const nome = produtos.querySelector('#nomeID');
+                    const preco = produtos.querySelector('#precoID');
+                    img.src = response[i].caminho_arquivo;
+                    nome.textContent = response[i].nome;
+                    preco.textContent = `R$ ${response[i].preco}`;  
+
+                }
 
             },
-            error: function (xhr, status, error) {
-                console.log("ERROR");
-                console.log("Status:", status);
-                console.log("Error:", error);
-                console.log("Response:", xhr.responseText);
+            error: function (xhr) {
+                console.log('[ERRO] xhr-> ', xhr.responseText);
 
-                // ta de acordo com o GPT o problema é que o response vem em html e
-                // e o post vem depois.
                 /**
-                 * Isso significa que:
-                O PHP executou
-                A consulta rodou
-                Mas antes do json_encode já tinha HTML sendo impresso
-                Então o Ajax entra no .error(xhr.responseText) porque a resposta não é JSON válido, é HTML + debug.
-                 
-                a solucao proposta por ele foi criar um arquivo separado para a consulta por ajax
-                mas isso ta bugando minha cabeça demais, nao sei fazer isso ainda
-                
-                ATT: retona resultado sim mas so em casos que tem registro no Bd
-                */
+                 * ele retorna registros json mas antes disso ele imprime 
+                 * html no console por isso cai no erro ja que nao consegue 
+                 * tratar o response como json, no caso ta imprimindo o html 
+                 * da pagina do html_Header.php
+                 *
+                 * resolvi o problema mudando a ordem dos includes na raiz do projeto,
+                 * no caso o index. Ele imprimia o html_header antes da navegacao.php ai por 
+                 * isso gerava html no console antes do json
+                 **/
             }
+
         });
     }
 } catch (error) {

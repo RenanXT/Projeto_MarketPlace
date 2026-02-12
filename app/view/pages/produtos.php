@@ -42,12 +42,6 @@
             </span>
         </form>
 
-        <!-- 
-        pra isso voce vai ter que chamar uma funcao js logo quando a pagina carregar 
-        e depois no clique de algum dos botoes voce vai ter que chamar de novo,
-        fora a pesquisa dinamica dos produtos por nome
-        -->
-
         <div class="d-flex flex-column align-items-start gap-3 w-75 h-100">
             <div class="d-flex justify-content-between w-100 p-3 border border-dark rounded-3">
                 <span class="d-flex gap-2 w-75 h-100 content-center">
@@ -63,12 +57,12 @@
                 <form method="POST" id="txtForm"
                     class="d-flex flex-row flex-wrap gap-1 rounded-2 border-dark position-relative">
                     
-                        <div id="txtCard" class="card-produto bg-content glow-hover text-white p-1">
+                        <div id="txtCard" class="d-none card-produto bg-content glow-hover text-white p-1">
                             <img class="card-img" src="" alt="">
                             <button type="button" class="btnEnviar btn text-white h-40">
                                 <span class="text-center w-100 h-50">
-                                    <p></p>
-                                    <p>R$ </p>
+                                    <p id="nomeID"></p>
+                                    <p id="precoID"></p>
                                 </span>
                             </button>
                             <input type="hidden" name="DataProd" value=''>

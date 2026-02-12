@@ -1,7 +1,7 @@
 <?php
 try {
 
-    $filtro = $_POST['filtro'] ?? null;
+    $filtro = $_POST['filtro'];
 
     $sql = 'SELECT p.*,
             c.tipo,
@@ -17,7 +17,7 @@ try {
     ';
     // .= faz com que caso o filtro tiver valor,
     //  adiciona o texto no final de $sql!
-    if (!empty($filtro)) {
+    if ($filtro != '') {
         $sql .= " WHERE c.tipo = :filtro";
     }
     $stmt = $conexao->prepare($sql);
