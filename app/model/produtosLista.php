@@ -5,15 +5,12 @@ try {
 
     $sql = 'SELECT p.*,
             c.tipo,
-            i.caminho_arquivo,
-            o.texto_opiniao
+            i.caminho_arquivo
         FROM produto p
         INNER JOIN categoria c 
             ON c.id_categoria = p.id_categoria
         INNER JOIN imagem_produto i 
             ON i.id_produto = p.id_produto
-        LEFT JOIN opiniaoproduto o 
-            ON o.id_produto = p.id_produto
     ';
     // .= faz com que caso o filtro tiver valor,
     //  adiciona o texto no final de $sql!
